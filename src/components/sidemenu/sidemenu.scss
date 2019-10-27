@@ -1,0 +1,49 @@
+@import '../../variables.scss';
+
+aside {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 25vw;
+    min-width: $sidemenu-width;
+    background-color: $primaryBlack;
+    color: white;
+    font-size: 1.4em;
+    border-right: 1px solid white;
+    position: fixed;
+    z-index: 20;
+    height: calc(100%  - #{$navigation-height});
+    padding-top: 10vh;
+
+    .profile-picture {
+        height: 5em;
+        width: 5em;
+    }
+
+    .links-container {
+        font-size: .9em;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+
+        .sidemenu-link-icon {
+            margin-right: 20px;
+        }
+        .sidemenu-link {
+            margin-bottom: 25px;
+            &:hover {
+                color: $primaryColor;
+                svg {
+                    color: $primaryColor;
+                }
+            }
+        }
+
+        .sidemenu-link, svg {
+            display: flex;
+            align-items: flex-end;
+            transition: color $transition-length-short;
+            color: white;
+        }
+    }
+}

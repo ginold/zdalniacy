@@ -1,0 +1,79 @@
+@import '../../variables.scss';
+
+$section-margin: 5%;
+
+#dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 7%;
+    flex-wrap: wrap;
+    height: calc(100vh  - #{$navigation-height});
+
+
+    .component {
+        background-color: whitesmoke;
+        padding: 30px 50px;
+        border-radius: 24px;
+        margin-bottom: 5%;
+        color: $primaryBlack;
+        width: calc(100% - 2*50px);
+    }
+    .full {
+        width: calc(100% - 2*50px);
+    }
+    .half {
+        width: calc((100%/2 - #{$section-margin}/2) - 2*50px) !important; 
+    }
+    .see-tasks-button {
+        margin-top: 5%;
+    }
+    .loading {
+        color: $primaryBlack;
+    }
+    .tasks {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .task-card {
+            width: 30%;
+            margin-top: 20px;
+        }
+    }
+    .welcome {
+        color: white;
+        width: 100%;
+        font-size: 3em;
+        text-align: center;
+        margin-top: 4%;
+    }
+    .title  {
+        width: 100%;
+        font-size: 3em;
+        margin: 0;
+        color: $primaryColor;
+    }
+    .lesson-cards-div {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .lesson-card {
+            width: 49%;
+        }
+    }
+}
+
+@include media-query(medium-screen) { 
+    .dashboard .tasks .task-card {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+    .dashboard {
+        .recents, .courses {
+            width: 100%;
+        }
+    }
+        
+}
+

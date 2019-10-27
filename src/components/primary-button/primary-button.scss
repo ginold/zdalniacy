@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+.primary-button {
+    background-color: $primaryColor !important;
+    color: white !important;
+    &.green {
+        background-color: $secondaryGreen !important;
+    }
+}
+.outlined-button {
+    border: 3px solid $primaryColor !important;
+    color: $primaryBlack !important;
+
+    &.green {
+        border-color: $secondaryGreen !important;
+    }
+}

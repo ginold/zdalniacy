@@ -1,0 +1,35 @@
+@import '../../variables.scss';
+
+#work {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: calc(100vh - #{$navigation-height});
+    color: $primaryBlack;
+
+    .job-offers {
+        flex-wrap: wrap;
+        position: relative;
+        display: flex;
+        padding: 50px;
+        justify-content: space-between;
+        margin-top: $filters-height;
+        overflow: auto;
+
+        .card-item {
+            width: 48%;
+            margin-bottom: 3%;
+        }
+    }
+    h2 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@include media-query(medium-screen) { 
+    .work .job-offers .card-item {
+        width: 100%;
+    }
+}
+

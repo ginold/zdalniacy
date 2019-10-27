@@ -1,0 +1,50 @@
+@import '../../variables.scss';
+
+
+.jobfilters-container {
+    display: flex;
+    height: $filters-height;
+    align-items: center;
+    color: white;
+    background-color: $primaryBlack;
+    padding-left: 40px;
+    font-size: 1.3em;
+    width: calc(100% - #{$sidemenu-width});
+    position: fixed;
+    z-index: 19;
+
+    .job-filters {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        font-weight: bold;
+        align-items: center;
+        padding-right: 40px;
+    }
+    .job-filter {
+        cursor: pointer;
+        transition: $transition-length-short;
+        &:hover {
+            color: $primaryColor;
+        }
+    }
+    .search-filter-input-root {
+        overflow: hidden;
+        height: $filters-height/2;
+
+        .MuiInputBase-input {
+            padding-left: 15px;
+        }
+    }
+    .search-filter {
+        padding: $filters-height/16;
+
+        svg {
+            font-size: 1.4em;
+            color: $primaryBlack;
+        }
+    }
+    .sort-filter-button svg {
+        color: white;
+    }
+}

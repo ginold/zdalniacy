@@ -1,0 +1,34 @@
+@import '../../variables.scss';
+
+#settings {
+    height: calc(100vh - #{$navigation-height});
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .settings-container {
+        width: 600px;
+    }
+    .setting {
+        margin-bottom: 40px;
+        display: block;
+    }
+
+    .setting-card-root {
+        font-size: 2em;
+        color: $primaryBlack;
+        display: flex;
+        svg {
+            color: $primaryBlack;
+            font-size: 2em;
+            margin-right: 40px;
+        }
+        .text {
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+            width: 80%;
+        }
+    }
+}

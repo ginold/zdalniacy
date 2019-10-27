@@ -1,0 +1,75 @@
+@import '../variables.scss';
+
+.modal-window {
+    background-color: white;
+    color: $primaryBlack;
+    width: 900px;
+    max-height: 70vh;
+    transform: translate(25%, 25%);
+    padding-bottom: 50px;
+
+    input {display: none;}
+    h2 {
+        padding: 50px;
+        color: white;
+        text-align: center;
+        margin: 0;
+        font-size: 2em;
+        background-color: $primaryColor;
+    }
+    .content {
+        margin-top: 2%;
+        padding: 0 50px 20px 50px;
+    }
+    &.test {
+        .answers {
+            padding: 50px;
+        }
+    }
+    &.apply {
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 0% 33% 33% 33% 0%;
+        }
+        .job-title {
+            grid-column-start: 2;
+            grid-column-end: 3;
+        }
+        .job-employer {
+            grid-column-start: 3;
+            grid-column-end: 4;
+        }
+        .job-upload-cv {
+            grid-column-start: 4;
+            grid-column-end: 5;
+            .upload-button {
+                background-color: $primaryColor;
+                color: white;
+                padding: 5px 10px;
+            }
+        }
+        .job-title, .job-employer, .job-upload-cv {
+            p:not(.upload) {
+                color: $primaryColor;
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+        }
+        .text-area {
+            width: 100%;
+        }
+        .text-area-component {
+            width: 100%;
+        }
+        
+    }
+    .bottom-buttons {
+        display: flex;
+        justify-content: space-evenly;
+        
+        button {
+            width: 200px;
+        }
+    }
+}

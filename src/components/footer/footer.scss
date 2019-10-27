@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+.footer {
+    padding: 50px 0;
+    display: grid;
+    grid-template-columns: 5% 0% 30% 30% 30% 5%;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li svg {
+            color: $primaryColor;
+            font-size: 4em !important;
+        }
+    }
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        height: 100px;
+    }
+    p {
+        margin-top: 20px;
+    }
+    .about {
+        grid-column-start: 3;
+    }
+    .social-media {
+        grid-column-start: 4;
+        ul {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+    }
+    .work-offer {
+        grid-column-start: 5;
+    }
+    .work-offer, .about {
+        color: lightslategrey;
+        a {
+            color: lightslategrey;
+        }
+    }
+}

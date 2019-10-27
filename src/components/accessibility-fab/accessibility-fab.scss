@@ -1,0 +1,21 @@
+@import '../../variables.scss';
+
+.floating-buttons {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    
+    .accessibility.fab {
+        background-color: $secondaryGreen;
+    }
+    button {
+        margin-right: 20px;
+        height: 60px;
+        width: 60px;
+
+        svg {
+            color: white;
+            font-size: 2em;
+        }
+    }
+}

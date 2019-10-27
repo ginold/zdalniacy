@@ -1,0 +1,90 @@
+@import '../../variables.scss';
+
+header {
+    position: fixed;
+    position: sticky;
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: $navigation-height;
+    top: 0;
+    z-index: 20;
+
+    .logo {
+        float: left;
+        width: calc(#{$navigation-height} - 10px);
+        margin-left: 20px;
+    }
+    ul.nav-links {
+        align-items: center;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+
+        li a, .icon {
+            cursor: pointer;
+            transition: .3s;
+            text-decoration: none;
+            &:visited {
+                color: $primaryBlack;
+            }
+        }
+        li a:hover {
+            color: $primaryColor;
+        }
+    }
+    .MuiBadge-badge {
+        background-color: $primaryColor;
+        color: white;
+        transform: scale(1.2) translate(50%, -50%);
+    }
+}
+[class^="work/job"] {
+    header {
+        box-shadow: 2px 2px 2px #cbcbcb;
+    }
+}
+nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-right: 50px;
+    font-weight: 500;
+    justify-content: flex-end;
+
+    .icon-button {
+        background: transparent;
+        padding: 0;
+        border: 0;
+    }
+    .icon {
+        color: $primaryBlack;
+        font-size: 1.4em;
+    }
+    .nav-link {
+        margin-right: 2vw;
+        font-size: 1.4em;
+        .active-link {
+            color: $primaryColor !important;
+        }
+    }
+
+}
+.MuiList-root {
+    background-color: $secondaryBlue;
+    color: white;
+}
+svg.MuiSvgIcon-root.icon {
+    margin-right: 10px;
+    &:hover {
+        color: $secondaryBlue;
+    }
+}
+
+@include media-query(medium-screen) { 
+    nav {
+        margin-left: 10%;
+    }
+}
+

@@ -1,0 +1,54 @@
+@import '../../variables.scss';
+
+#test {
+    height: calc(100vh - #{$navigation-height});
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .test-container, .progress {
+        width: 65vw;
+    }
+    .progress {
+        height: 20px;
+        border-radius: 10px;
+    }
+    .test-container {
+        margin-top: 50px;
+        
+        .buttons {
+            position: relative;
+            margin-top: 30px;
+            .prev-step  span {
+                color: white;
+            }
+            .next-step {
+                position: absolute;
+                right: 100px;
+            }
+        }
+    }
+    .question {
+        .question-title {
+            margin-top: 0;
+            font-size: 3em;
+            color: $primaryColor;
+        }
+    }
+    .answers {
+        .answer {
+            width: 49%;
+            margin-bottom: 20px;
+        }
+        label .MuiFormControlLabel-label {
+            font-size: 1.3em;
+        }
+        .MuiSvgIcon-root {
+            width: 2em;
+            height: 2em;
+            color: $secondaryGreen;
+        }
+            
+    }
+}

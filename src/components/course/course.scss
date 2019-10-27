@@ -1,0 +1,81 @@
+@import '../../variables.scss';
+
+#course {
+    height: calc(100vh - #{$navigation-height});
+    text-transform: capitalize;
+
+    .description-container {
+        padding: 50px;
+        display: flex;
+        font-size: 1.2em;
+        justify-content: space-evenly;
+    }
+    .text {
+        width: 60%;
+        p {
+            text-transform: none;
+        }
+    }
+    .title {
+        font-size: 2.5em;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 1.2em;
+        svg {
+            margin-right: 10px;
+        }
+        > * {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .lessons-container {
+        background-color: whitesmoke;
+        color: black;
+        padding: 50px 6vw;
+        display: flex;
+
+        &.fixed {
+            width: calc(100% - 2*50px);
+            position: absolute;
+            top: 0;
+            overflow: auto;
+        }
+
+        .lists-container {
+            width: 30%;
+            position: sticky;
+            top: 0;
+            font-size: 1.2em;
+            color: $primaryBlack;
+            h3 {
+                margin-top: 0;
+            }
+            .sticky-lists {
+                position: sticky;
+                top: 50px;
+            }
+            .list {
+                li {
+                    cursor: pointer;
+                    margin-bottom: 10px;
+                }
+                
+                 ul a {
+                    color: $primaryBlack;
+                }
+            }
+        }
+        .lessons {
+            width: 70%;
+        }
+    }
+    .not-found {
+        font-size: 2em;
+        padding-top: 15vh;
+        text-align: center;
+    }
+}

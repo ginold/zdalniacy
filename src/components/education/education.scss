@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+#education  {
+    height: calc(100vh - #{$navigation-height});
+
+    .education-container {
+        display: flex;
+        overflow: auto;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 50px;
+    }
+    .education-card {
+
+        
+    }
+}

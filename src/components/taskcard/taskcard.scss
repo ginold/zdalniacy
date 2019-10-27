@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.task-card {
+    
+    .task-img {
+        height: 140px;
+        background-position: center;
+    }
+    .buttons {
+        justify-content: center;
+        padding: 10px 30px;
+    }
+    .points {
+        text-align: center;
+        font-size: 1.2em;
+        color: $secondaryGreen;
+        font-weight: bold;
+    }
+}

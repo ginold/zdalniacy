@@ -1,0 +1,60 @@
+@import '../../variables.scss';
+
+.landing-page {
+    height: 100%;
+    background: linear-gradient(25deg, #172231 54%, #ce52a2 114%);
+    .landing-page-container{
+        padding: 50px 10%;
+        height: calc(100% - 2*50px);
+        overflow: auto;
+    }
+    .job-offers {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: calc(100vh - (#{$navigation-height} + 50px));
+        .job-cards {
+            width: 45%;
+        }
+        .job-offer-card {
+            margin-bottom: 20px;
+            
+        }
+    }
+    .work-text {
+        text-align: center;
+        width: 45%;
+        font-size: 2em;
+        color: white;
+    }
+    .features {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4em;
+        .what-to-see, .features-heading {
+            width: 50%;
+        }
+        .features-heading {
+            margin-left: 10%;
+            font-size: 1.2em;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+
+            p:nth-child(even){
+                margin-left: 40px;
+            }
+            p:nth-child(odd){
+                margin-right: 40px;
+            }
+            img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    }
+}

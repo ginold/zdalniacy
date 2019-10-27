@@ -1,0 +1,78 @@
+@import './variables.scss';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ .App, #root {
+  height: 100%;
+}
+ul {
+  padding-left: 15px;
+  list-style: none;
+}
+a, a svg {
+  color: $primaryColor;
+  text-decoration: none;
+  transition: $transition-length-short;
+
+  &:hover {
+    color: $hoverPrimaryColor;
+  }
+
+  &.active-link {
+    color: $primaryColor !important;
+    svg {
+        color: $primaryColor !important;
+    }
+  }
+}
+h1 { 
+  color: $primaryColor;
+  margin-top: 0;
+}
+
+.signup-login-animation-container { height: 100%;}
+// dont show aside and header for not logged in users
+.signup, .login {
+  
+  header {
+    display: none;
+  }
+  .container {
+    padding-top: 0;
+    height: 100%;
+  }
+}
+.signup, .login, .settings, .test {
+  &.App {
+    margin-top: 0;
+  }
+  aside {
+    display: none;
+  }
+  main {
+    margin-left: 0;
+    overflow: hidden; // glichy effects when transition between login and signup
+  }
+}
+/* The default outline styling, for greatest accessibility. */
+/* You can skip this to just use the browser's defaults. */
+:focus {
+  outline: none;
+  border: dashed 3px orange;
+}
+
+/* When mouse is detected, ALL focused elements have outline removed. */
+/* You could apply this selector only to buttons, if you wanted. */
+body.using-mouse :focus {
+  outline: none;
+  border: none;
+}

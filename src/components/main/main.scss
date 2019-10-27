@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+main {
+    position: relative;
+    // height: calc(100vh - #{$navigation-height});
+    margin-left: $sidemenu-width;
+    background-color: $primaryBlack;
+    color: white;
+    overflow: auto;
+}
+
+// url  = '/' landing or dashboard
+[class=" App"] {
+    main {
+        margin-left: 0;
+    }
+}

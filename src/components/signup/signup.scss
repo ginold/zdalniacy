@@ -1,0 +1,87 @@
+//  the sign up css is described in login.scss, here only changes specific to signup
+@import '../../variables.scss';
+
+.signup-signin-container {
+    overflow: hidden;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+   
+    .choose-usertype {
+        align-items: center;
+        flex-direction: row;
+        cursor: pointer;
+        transition: color $transition-length-short;
+        margin-top: 0;
+
+        p {
+            font-size: 1.5em;
+            padding-left: 15%;
+            width: 80%;
+            text-align: start;
+        }
+        svg {
+            padding-left: 5%;
+            width: 20%;
+            font-size: 3em;
+        }
+        &:hover {
+            color: $primaryColor;
+        }
+    }
+    .icons-container {
+        flex-direction: unset;
+        justify-content: center;
+    }
+    
+}
+.steps-container {
+    width: ($signup-form-width*$number-of-steps);
+    display: flex;
+    transition: transform .5s;
+
+    button {
+        margin-top: 10px;
+    }
+}
+.signup-signin-window {
+    .info {
+        font-size: 1.2em;
+        color: white;
+        text-align: left;
+        position: absolute;
+        left: 5%;
+        top: 10%;
+
+        .MuiStepper-horizontal {
+            padding: 0;
+            background-color: transparent;
+        }
+        .MuiStepIcon-root {
+            color: $primaryColor;
+        }
+        .MuiStepIcon-text, .MuiStepLabel-label {
+            color: white;
+        }
+        h2 {
+            color: $primaryColor;
+        }
+        .message {
+            animation-name: fadeIn;
+            animation-duration: .3s;
+        }
+    }
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    width: calc((100%/#{$number-of-steps}) - 80px); // .form-container 40px r+l padding
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

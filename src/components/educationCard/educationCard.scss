@@ -1,0 +1,48 @@
+@import '../../variables.scss';
+
+.education-card {
+    width: 22vw;
+    height: 20vw;
+    margin-bottom: 2vw;
+
+     .MuiButtonBase-root, .MuiCard-root, .education-card-img {
+        height: 100%;
+     }
+     .education-card-info {
+        text-align: center;
+        color: white;
+        width: 22vw;
+        height: 20vw;
+        background-color: #19407f;
+        transition: transform .3s;
+        transform: translateY(-4vw);
+        background-size: cover;
+        transition: .3s;
+
+        h2 {
+            font-weight: bold;
+            margin: 0;
+        }
+        .text {
+            font-size: 1.4vw;
+            position: relative;
+            top: 1vw;
+            transition: .3s;
+        }
+    }
+    .education-card-img {
+        transition: transform .3s;
+    }
+    &:hover {
+        .education-card-img {
+            transform: scale(1.2);
+        }
+        .education-card-info {
+            transform: translateY(-20vw);
+            background-color: #0411269e;
+        }
+        .text {
+            top: 7vw;
+        }
+    }
+}

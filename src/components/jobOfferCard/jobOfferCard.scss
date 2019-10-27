@@ -1,0 +1,36 @@
+@import '../../variables.scss';
+
+.job-offer-card {
+    display: flex;
+    flex-wrap: wrap; 
+    color: $primaryBlack;
+    height: 100%;
+    .MuiCardActionArea-root {
+        height: 100%;
+        padding-top: 10px
+    }
+    svg { color: $primaryBlack; }
+    .card-root {width: 100%;}
+    .job-offer-img {
+        width: 140px;
+        margin-left: 20px;
+        background-size: contain;
+    }
+    .job-offer-top, .job-offer-bottom, .time, .location, 
+    .date-added {
+        display: flex;
+    }
+    .job-offer-bottom {
+        justify-content: space-around;
+        padding: 10px 0;
+
+        > * {
+            align-items: center;
+        }
+
+        .text {
+            margin-left: 5px;
+        }
+    }
+    
+}

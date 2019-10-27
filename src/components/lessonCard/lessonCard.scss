@@ -1,0 +1,37 @@
+.lesson-card {
+    margin-bottom: 20px;
+    width: 100%;
+    
+    .lesson-card-container {
+        font-size: 1.1em;
+        display: flex;
+        justify-content: flex-start;
+        
+    }   
+    .lesson-card-image {
+        width: 100px;
+        height: 100px;
+        margin-right: 5%;
+        margin-left: 20px;
+    }
+    .lesson-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        /* Limit the text block to three lines */
+        -webkit-line-clamp: 2;
+    }
+    .properties {
+        display: flex;
+        margin-top: 20px;
+
+        .property {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
