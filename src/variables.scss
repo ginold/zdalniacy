@@ -14,16 +14,20 @@ $transition-length-short: .2s;
 
 
 $break-small: 500px;
-$break-large: 1100px;
+$break-medium: 1100px;
+$break-large: 1500px;
 
 @mixin media-query($media) {
   @if $media == phone {
     @media only screen and (max-width: $break-small) { @content; }
   }
   @else if $media == medium-screen {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium - 1) { @content; }
   }
   @else if $media == wide-screen {
+    @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == very-wide-screen {
     @media only screen and (min-width: $break-large) { @content; }
   }
 }

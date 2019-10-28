@@ -66,6 +66,12 @@ function Course(props) {
               <h1 className="title">{course.type}</h1>
               <p>{course.description}</p>
             </div>
+            
+            <div className="background-image-container">
+              <div className="background-image" style={{backgroundImage: `url(/images/courses/${course.type}.jpg)`}}>
+            </div>
+
+            </div>
             <div className="info">
               <div className="lessons"><MenuBookIcon /><span>{allLessons.length} lekcji</span></div>
               <div className="hours"><WatchLaterIcon /><span>{getTotalDuration()} godzin</span></div>
