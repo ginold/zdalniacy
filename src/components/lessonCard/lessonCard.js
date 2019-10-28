@@ -10,6 +10,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';;
 
 export default function LessonCard(props) {
   const lesson = props.lesson
+
+  const getHours = (duration) => {
+    return Math.round(duration / 60) + ' godziny';
+  }
   return (
     <Card className="lesson-card">
       <CardActionArea className="lesson-card-container">
@@ -18,7 +22,7 @@ export default function LessonCard(props) {
           image={"/images/lessons/" + lesson.imgUrl + ".png"}
           title={lesson.title}
         />
-        <CardContent>
+        <CardContent className="lesson-card-content-root">
           <div className="lesson-card-content">
             <Typography gutterBottom variant="h5" component="h2" className="lesson-title">
               {lesson.title}
@@ -27,8 +31,10 @@ export default function LessonCard(props) {
               {lesson.description}
             </Typography>
             <div className="properties">
-              <div className="property"><HourglassEmptyIcon /><p>4 godziny</p></div>
-              <div className="property"><AttachMoneyIcon /><p>500 punktów</p></div>
+              <div className="property"><HourglassEmptyIcon /><p>{getHours(lesson.duration)}</p></div>
+              <div className="property">
+                {lesson.cost > 0 ? (<><AttachMoneyIcon /> <p>{lesson.cost} punktów</p></>) : (<p className="free">ZA DARMO</p>)}
+              </div>
             </div>
           </div>
         </CardContent>

@@ -13,6 +13,7 @@ import PrimaryButton from '../primary-button';
 
 function Course(props) {
   const [allLessons, setAllLessons] = useState([])
+  const [selectedTopic, setSelectedTopic] = useState(null)
 
   const [course, setCourse] = useState(null)
   const [courseNotFound, setCourseNotFound] = useState(null)
@@ -45,6 +46,12 @@ function Course(props) {
     return [...new Set(topics)]; // unique array
   }
   const filterLessonsByTopic = (topic) => {
+    if (topic === selectedTopic) {
+      setCourse({ ...course, lessons: allLessons })
+      setSelectedTopic(null)
+      return
+    }
+    setSelectedTopic(topic)
     let filtered = []
     filtered = allLessons.filter(lesson => lesson.topics.indexOf(topic) > -1)
     setCourse({ ...course, lessons: filtered })
@@ -66,10 +73,10 @@ function Course(props) {
               <h1 className="title">{course.type}</h1>
               <p>{course.description}</p>
             </div>
-            
+
             <div className="background-image-container">
-              <div className="background-image" style={{backgroundImage: `url(/images/courses/${course.type}.jpg)`}}>
-            </div>
+              <div className="background-image" style={{ backgroundImage: `url(/images/courses/${course.type}.jpg)` }}>
+              </div>
 
             </div>
             <div className="info">
@@ -85,7 +92,7 @@ function Course(props) {
                   <h3>Tematyka</h3>
                   <ul>
                     {courseLessonstopics.map(topic => {
-                      return <li onClick={() => { filterLessonsByTopic(topic) }} key={topic}>{topic}</li>
+                      return <li onClick={() => { filterLessonsByTopic(topic) }} className={selectedTopic === topic ? 'active' : null} key={topic}>{topic}</li>
                     })}
                   </ul>
                 </div>
@@ -93,14 +100,27 @@ function Course(props) {
                   <h3>Kursy</h3>
                   <ul>
                     {Education.courses.map(c => {
-                      return <Link to={"/education/courses/" + c.type} key={c.type} onClick={() => getCourse(c.type)}><li>{c.title}</li></Link>
+                      return (
+                        <Link to={"/education/courses/" + c.type} key={c.type}
+                          onClick={() => getCourse(c.type)}>
+                          <li>{c.title}</li>
+                        </Link>)
                     })}
                   </ul>
                 </div>
               </div>
             </div>
             <div className="lessons">
-              {course.lessons.map(l => { return <LessonCard lesson={l} key={l.description} /> })}
+              {course.lessons.map(l => {
+                return (
+                  <Link to={{
+                    pathname: "/education/courses/" + courseType + "/" + l.title,
+                    state: l
+                  }}>
+                    <LessonCard lesson={l} key={l.description} />
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </div>

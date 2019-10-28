@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .lesson-card {
     margin-bottom: 20px;
     width: 100%;
@@ -6,8 +8,10 @@
         font-size: 1.1em;
         display: flex;
         justify-content: flex-start;
-        
     }   
+    .lesson-card-content-root {
+        width: 80%;
+    }
     .lesson-card-image {
         width: 100px;
         height: 100px;
@@ -21,6 +25,10 @@
         /* Limit the text block to three lines */
         -webkit-line-clamp: 2;
     }
+    .free {
+        font-weight: bold;
+        color: $primaryColor;
+    }
     .properties {
         display: flex;
         margin-top: 20px;
@@ -31,6 +39,9 @@
             align-items: center;
             p {
                 margin: 0;
+            }
+            svg {
+                color: $primaryBlack;
             }
         }
     }

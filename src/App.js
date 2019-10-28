@@ -23,6 +23,7 @@ import Test from './components/test';
 
 import AccessibilityFab from './components/accessibility-fab';
 import MessageFab from './components/message-fab';
+import LessonDetails from './components/lessonDetails/lessonDetails';
 
 // mapped properties at bottom
 const App = ({ history, pathname, isLogged }) => {
@@ -67,7 +68,8 @@ const App = ({ history, pathname, isLogged }) => {
 
           <Route path="/social" component={Social} />
           <Route path="/education/courses" exact component={Education} />
-          <Route path="/education/courses/:type" component={Course} />
+          <Route path="/education/courses/:type" exact component={Course} />
+          <Route path="/education/courses/:type/:lesson" component={LessonDetails} />
 
           <Route path="/social/messages" component={Messages} />
           <Route path="/settings" exact component={Settings} />
