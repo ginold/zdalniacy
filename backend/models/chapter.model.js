@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const chapterSchema = new Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    imgUrl: { type: String },
+    title: { type: String },
+    subchapters: [{ type: String }]
 })
 
 const Chapter = mongoose.model('Chapter', chapterSchema);

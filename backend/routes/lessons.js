@@ -60,7 +60,7 @@ router.route('/add').post((req, res) => {
     } else {
         const newLesson = new Lesson({ ...req.body })
         newLesson.save()
-            .then(() => res.json('lesson added'))
+            .then(() => res.json('lesson added: ' + newLesson))
             .catch(err => res.status(400).json('error ' + err))
     }
 })
