@@ -15,7 +15,9 @@ const userSchema = new Schema({
     userType: { type: String, required: true },
     points: { type: Number },
     jobsApplied: [job.schema],
-    savedObjects: [saved.schema],
+    saved: {
+        lessons: [], jobs: []
+    },
     interests: [{ type: String }],
     preferences: [{ type: Object }]
 }, {

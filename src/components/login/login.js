@@ -1,28 +1,21 @@
 import React from "react"
 import './login.scss';
-import TextField from '@material-ui/core/TextField';
 import logo from '../../static/logo/logo-wfb-white.svg';
 import PrimaryButton from '../primary-button/primary-button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import FacebookLogin from 'react-facebook-login';
-import GTranslateIcon from '@material-ui/icons/GTranslate';
 import Auth from "../../services/auth";
 import unlockedLessonsService from "../../services/unlockedLessonsService";
-
+import useForm from '../../helpers/useForm'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import Spinner from "../spinner";
 
 function Login(props) {
-  const [values, setValues] = React.useState({
-    password: '', email: '', fromFacebook: false
-  });
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-  const handleFacebookLogin = res => {
-    Auth.signIn()
-    Auth.setUserData({ ...res, fromFacebook: true })
-    redirect()
-  }
+  const [loginError, setLoginError] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+
   const handleLogin = () => {
+    setLoading(true)
     Auth.login({ password: values.password, email: values.email }).then(async (res) => {
       if (res.status === 200) {
         Auth.signIn()
@@ -30,7 +23,10 @@ function Login(props) {
         Auth.setUserData({ ...res.data, unlockedLessons: data.lessons, points: 1000 })
         redirect()
       }
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      setLoginError(true)
+    }).finally(() => setLoading(false))
   }
   const redirect = () => {
     if (props.location.state) {
@@ -39,46 +35,57 @@ function Login(props) {
       goTo('/')
     }
   }
+  const requiredFieldText = "To pole jest wymagane."
+  const invalidEmail = 'E-mail jest nieprawidłowy.'
+
+  const initialValues = {
+    email: '', password: ''
+  }
+  const { values, handleChange, handleSubmit } = useForm(initialValues, handleLogin);
   const goTo = (path) => {
     props.history.push(path);
   }
   return (
     <div className="signup-signin-window">
+      <Spinner loading={loading} color="dark" />
       <section className="signup-signin-container">
         <div className="signup-signin-header">
           <img alt="white logo" src={logo}></img>
           <h1>Zaloguj się</h1>
         </div>
         <div className="form-container">
-          <form>
+          <ValidatorForm onSubmit={handleSubmit}>
             <PrimaryButton text="Nie masz konta?" onClick={() => goTo('/signup')} outlined />
-
-            <TextField
-              id="email-input"
+            <TextValidator
               label="E-mail"
+              onChange={handleChange}
               name="email"
-              className="text-input"
-              value={values.email}
-              onChange={handleChange('email')}
               margin="normal"
               variant="outlined"
               aria-required="true"
               aria-label="E-mail"
+              value={values.email}
+              validators={['required', 'isEmail']}
+              errorMessages={[requiredFieldText, invalidEmail]}
             />
-            <TextField
+            <TextValidator
               id="password-input"
               label="Hasło"
               name="password"
               className="text-input"
+              type="password"
+              autoComplete="current-password"
               value={values.password}
-              onChange={handleChange('password')}
+              onChange={handleChange}
               margin="normal"
               variant="outlined"
               aria-required="true"
               aria-label="Hasło"
+              validators={['required']}
+              errorMessages={[requiredFieldText]}
             />
-
-            <PrimaryButton text="Login" primary onClick={handleLogin} />
+            {loginError && <p>Błąd przy logowaniu.</p>}
+            <PrimaryButton text="Login" primary onClick={handleSubmit} />
             <div className="other-login-options">
               <b>lub zaloguj się za pomocą</b>
               <div className="icons">
@@ -89,11 +96,10 @@ function Login(props) {
                     fields="name,email,picture"
                     callback={handleFacebookLogin} /> */}
                 </span>
-                <span className="icon"><GTranslateIcon /></span>
               </div>
               <PrimaryButton text="Wróć do strony głównej" onClick={() => goTo('/')} outlined green />
             </div>
-          </form>
+          </ValidatorForm>
         </div>
       </section>
     </div>

@@ -9,6 +9,7 @@ class PrimaryButton extends Component {
       <Button variant={this.props.primary ? "contained" : "outlined"}
         className={
           `     ${this.props.className}
+                ${this.props.disabled ? 'disabled' : null}
                 ${this.props.primary ? "primary-button" : "outlined-button"}
                 ${this.props.green ? "green" : ""}
                 `

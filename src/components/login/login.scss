@@ -17,6 +17,10 @@
         color: $primaryBlack;
         font-size: 1.2em;
     }
+    .spinner {
+        position: absolute;
+        z-index: 22;
+    }
     .signup-signin-header {
         background-color: $primaryColor;
         color: white;
