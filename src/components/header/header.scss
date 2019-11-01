@@ -20,7 +20,7 @@ header {
         list-style-type: none;
         display: flex;
         justify-content: space-between;
-        width: 70%;
+        width: 75%;
 
         li a, .icon {
             cursor: pointer;
@@ -38,14 +38,12 @@ header {
     .MuiBadge-badge {
         background-color: $primaryColor;
         color: white;
-        transform: scale(1.2) translate(50%, -50%);
+        transform: scale(1.2) translate(20%, -50%);
     }
 }
-[class^="work/job"] {
-    header {
-        box-shadow: 2px 2px 2px #cbcbcb;
-    }
-}
+
+// added shadow for work/job path in .js file
+
 nav {
     display: flex;
     align-items: center;
@@ -86,6 +84,11 @@ svg.MuiSvgIcon-root.icon {
 @include media-query(medium-screen) { 
     nav {
         margin-left: 10%;
+    }
+}
+@media only screen and (max-width: 1000px) { 
+    header .nav-links {
+        width: 100% !important;
     }
 }
 

@@ -10,6 +10,7 @@ router.route('/').get((req, res) => {
 
 // route: /lessons/218937
 router.route('/:id').get((req, res) => {
+    console.log(req.params)
     Lesson.findById(req.params.id)
         .then(lesson => res.json(lesson))
         .catch(err => res.status(400).json('error: ' + err))

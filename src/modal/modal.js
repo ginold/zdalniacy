@@ -3,17 +3,14 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import './modal.scss';
-import PrimaryButton from '../components/primary-button';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import ModalContentTest from '../components/modalContentTest'
+import ModalContentApply from '../components/modalContentApply'
+import ModalContentUnlockLesson from '../components/modalContentUnlockLesson'
 
 export default function ModalWindow(props) {
 
   const [open, setOpen] = useState(false);
-  const [application, setApplication] = useState({
-    message: '', cv: {}
-  })
+  const type = props.type
 
   useEffect(() => {
     setOpen(props.isOpen)
@@ -23,18 +20,9 @@ export default function ModalWindow(props) {
     setOpen(false);
     props.isClosed()
   };
-  const handleChange = (name) => event => {
-    console.log(event.target.value)
-    setApplication({ ...application, [name]: event.target.value });
-  }
 
-
-  const type = props.type
-  const title = props.title;
-  const job = props.object || {}
-
-  const createApplicationObject = (application) => {
-    let a = { user: {}, job: job, ...application }
+  const createApplicationObject = (application, job) => {
+    let a = { user: {}, job, ...application }
     props.sendApplication(a)
   }
 
@@ -51,57 +39,23 @@ export default function ModalWindow(props) {
 
       <Fade in={open}>
         <div>
-          {type === 'apply' && <div className={" modal-window " + type}>
-            <h2 id="transition-modal-title">{title}</h2>
-            <div className="content">
-              <div className="grid">
-                <div className="job-title">
-                  <b>Ogłoszenie</b>
-                  <p>{job.title}</p>
-                </div>
-                <div className="job-employer">
-                  <b>Pracodawca</b>
-                  <p>{job.company}</p>
-                </div>
-                <div className="job-upload-cv">
-                  <b>Twoje CV</b>
-                  <p className="upload">Format .pdf, .docx</p>
-                  <input
-                    accept="image/*"
-                    id="text-button-file"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="text-button-file">
-                    <Button className="upload-button" component="span">Wybierz CV</Button>
-                  </label>
-                </div>
-              </div>
+          {type === 'apply' && <ModalContentApply
+            type={type}
+            createApplicationObject={createApplicationObject}
+            handleClose={handleClose}
+            job={props.object} />}
 
-              <div className="text-area">
-                <p>Tu możesz wpisać swoją wiadomość do pracodawcy. To pole nie jest wymagane.</p>
-                <TextField
-                  id="outlined-multiline-static"
-                  label="Wiadomość do pracodawcy"
-                  multiline
-                  rows="4"
-                  onChange={handleChange('message')}
-                  value={application.message}
-                  className="text-area-component"
-                  placeholder="Tu wpisz swój list motywacyjny"
-                  margin="normal"
-                  variant="outlined"
-                />
-              </div>
-            </div> {/* .content */}
-            <div className="bottom-buttons">
-              <PrimaryButton text="Aplikuj!"
-                onClick={() => createApplicationObject({ message: application.message })} primary />
-              <PrimaryButton text="Zamknij" onClick={handleClose} outlined />
-            </div>
-          </div>}
+          {type === 'test' && <ModalContentTest
+            type={type}
+            answers={props.object}
+            handleClose={handleClose} />}
 
-          {type === 'test' && <ModalContentTest type={type} answers={props.object} handleClose={handleClose} />}
+          {type === 'lesson' && <ModalContentUnlockLesson
+            type={type}
+            unlock={props.unlock}
+            lesson={props.object}
+            handleClose={handleClose}
+          />}
         </div>
       </Fade>
     </Modal>

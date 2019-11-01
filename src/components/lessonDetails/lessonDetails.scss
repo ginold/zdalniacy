@@ -1,5 +1,45 @@
 @import '../../variables.scss';
 
 #lesson-details {
-    height: calc(100vh - #{$navigation-height});
+    padding: 0 4vw;
+    overflow: auto;
+    
+    .lesson-details-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .lesson-title {
+        font-size: 3em;
+        width: 65%;
+    }
+    .lesson-tabs {
+         margin-bottom: 50px;
+    }
+    .table-of-contents {
+        width: 30%; 
+        max-height: 400px;
+        overflow: auto;
+        margin-left: 5%;
+    }
+    .lesson-info {
+        height: 200px;
+        width: 30%;
+        margin-left: 5%;
+
+        svg {
+            height: 2em;
+            width: 2em;
+        }
+    }
+    .video {
+        background-color: beige;
+        width: 65%;
+        height: 400px;
+        margin-bottom: 30px;
+    }
+    .breadcrumbs {
+        margin-top: 20px;
+        justify-content: flex-start;
+        color: white;
+    }
 }

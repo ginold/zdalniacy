@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
-    height: calc(100vh - #{$navigation-height});
     color: $primaryBlack;
 
     .job-offers {
@@ -21,15 +20,15 @@
             margin-bottom: 3%;
         }
     }
-    h2 {
+    .no-results {
         width: 100%;
         text-align: center;
     }
 }
 
-@include media-query(medium-screen) { 
+@media only screen and (max-width: 900px) {
     .work .job-offers .card-item {
-        width: 100%;
+        width: 100% !important;
     }
 }
 @include media-query(wide-screen) { 

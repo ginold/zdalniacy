@@ -87,7 +87,7 @@ class Test extends Component {
     const q = this.questions[this.state.step]
     let answers = this.state.checkedAnswers;
 
-    return <section id="test">
+    return <section id="test" className="main-content">
       <div className="progress-info">
         <h2>Pytanie {this.state.step + 1} na {this.state.totalSteps}</h2>
       </div>

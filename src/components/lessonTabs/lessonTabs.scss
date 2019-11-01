@@ -1,0 +1,10 @@
+.lesson-tabs {
+    width: 100%;
+    .lesson-tabs-root {
+        min-height: 200px;
+    }
+    .lesson-tab:not(.Mui-selected) {
+        background: #305780;
+    color: white;
+    }
+}

@@ -1,7 +1,6 @@
 @import '../../variables.scss';
 
 #settings {
-    height: calc(100vh - #{$navigation-height});
     display: flex;
     flex-direction: column;
     justify-content: center;

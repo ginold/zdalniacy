@@ -29,13 +29,13 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('error: ' + err))
 })
 // update
-router.route('/update/:id').post((req, res) => {
-    Course.findById(req.params.id)
-        .then(course => {
-            course = req.body
-            course.save()
-                .then(() => res.json('course updated'))
-                .catch(err => res.status(400).json('err ' + err))
+router.route('/update/:id').post(async (req, res) => {
+    let oldCourse = await Course.findById(req.params.id)
+    let newCourse = { ...oldCourse._doc, ...req.body }
+
+    Course.findOneAndUpdate({ _id: req.params.id }, newCourse)
+        .then(result => {
+            res.status(200).json('course updated! ' + result)
         })
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -61,8 +61,7 @@ router.route('/add').post((req, res) => {
         }, (error) => { console.warn(error) })
 
     } else {
-        const { type, description, lessons } = req.body
-        const newCourse = new Course({ type, description, lessons })
+        const newCourse = new Course({ ...req.body })
         newCourse.save()
             .then(() => res.json('course added'))
             .catch(err => res.status(400).json('error ' + err))

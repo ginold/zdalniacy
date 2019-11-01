@@ -18,6 +18,11 @@ aside {
     .profile-picture {
         height: 5em;
         width: 5em;
+
+        img {
+            height: 100%;
+            margin-top: 1em;
+        }
     }
 
     .links-container {

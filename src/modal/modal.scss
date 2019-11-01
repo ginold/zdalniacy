@@ -10,7 +10,7 @@ div[role="presentation"] {
     color: $primaryBlack;
     width: 900px;
     max-height: 70vh;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 
     input {display: none;}
     h2 {
@@ -24,6 +24,9 @@ div[role="presentation"] {
     .content {
         margin-top: 2%;
         padding: 0 50px 20px 50px;
+    }
+    &.lesson {
+        width: 50vw;
     }
     &.test {
         .answers {

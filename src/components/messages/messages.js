@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Messages extends Component {
   render() {
-    return <div>Messages</div>;
+    return <section id="messages" className="main-content">Messages</section>;
   }
 }
 

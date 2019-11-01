@@ -22,24 +22,37 @@ router.route('/:id').delete((req, res) => {
 })
 // update
 router.route('/update/:id').post((req, res) => {
-    User.findById(req.params.id)
-        .then(user => {
-            user = req.body
-            user.save()
-                .then(() => res.json('user updated'))
-                .catch(err => res.status(400).json('err ' + err))
+    const updatedUser = { ...req.body }
+    User.findOneAndUpdate({ _id: req.params.id }, updatedUser)
+        .then(result => {
+            res.status(200).json('unlockedLesson updated! ' + result)
         })
         .catch(err => res.status(400).json('error: ' + err))
 })
 
 // route: /users/add
 router.route('/add').post((req, res) => {
-    const { title, description, company, time, location } = req.body
-    const newUser = new User({ title, description, company, location, time })
+    const newUser = new User({ ...req.body })
 
     newUser.save()
         .then(() => res.json('user added'))
-        .catch(err => res.status(400).json('error ' + err))
+        .catch(err => {
+            console.log(err)
+            res.status(400).json('error ' + err)
+        })
 })
+router.route('/login').post((req, res) => {
+    const data = new User({ ...req.body })
+    console.log(data)
 
+    User.findOne({ email: data.email })
+        .then(user => {
+            if (user.password === data.password) {
+                res.status(200).json(user)
+            } else {
+                res.status(403).json('denied')
+            }
+        })
+        .catch(err => res.status(400).json('error: ' + err))
+})
 module.exports = router

@@ -1,0 +1,26 @@
+.table-of-contents {
+    
+    .table-of-contents-title {
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 0;
+    }
+    .chapter-title {
+        font-weight: bold;
+    }
+    .subchapter-title {
+        margin: 5px 0;
+    }
+    .table-of-contents-panel-details {
+        padding-left: 50px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .MuiExpansionPanelSummary-root.Mui-expanded {
+        min-height: 0;
+    }
+    .MuiExpansionPanelSummary-content.Mui-expanded {
+        margin: 0;
+    }
+}

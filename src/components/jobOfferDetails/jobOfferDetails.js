@@ -4,7 +4,7 @@ import './jobOfferDetails.scss';
 import PrimaryButton from '../primary-button/primary-button';
 import JobOfferCard from '../jobOfferCard';
 import ModalWindow from '../../modal';
-import axios from '../../axios'
+import jobService from '../../services/jobService'
 
 class JobOfferDetails extends Component {
   constructor(props) {
@@ -14,9 +14,9 @@ class JobOfferDetails extends Component {
   }
   getJob = () => {
     let id = this.props.location.pathname.split("/")[3]
-    axios.get('/jobs/' + id).then(res => {
+    jobService.getJobById(id).then((res) => {
       this.setState({ job: res.data })
-    })
+    }).catch((err) => console.error(err))
   }
   similarJobs = () => {
     let s = []
@@ -38,7 +38,7 @@ class JobOfferDetails extends Component {
   saveJob = () => {
     console.log('save')
   }
-  sendApplication = application => {
+  sendApplication = (application) => {
     this.closeModal()
     const job = { ...this.state.job, applied: true }
     this.setState({ job })

@@ -14,8 +14,8 @@ $transition-length-short: .2s;
 
 
 $break-small: 500px;
-$break-medium: 1100px;
-$break-large: 1500px;
+$break-medium: 1300px;
+$break-large: 1600px;
 
 @mixin media-query($media) {
   @if $media == phone {

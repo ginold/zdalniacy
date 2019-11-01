@@ -1,3 +1,4 @@
+
 export const loggedReducer = (state = false, action) => {
     switch (action.type) {
         case "SIGN_IN":
@@ -16,14 +17,22 @@ const userData = {
     city: '',
     picture: { url: '' },
     country: '',
-    surname: '',
-    name: '',
+    familyname: '',
+    firstname: '',
+    points: 0,
     userName: '',
     userType: ''
 }
+// state is immutable, can't access it like state.prop!
 export const userDataReducer = (state = userData, action) => {
     if (action.type === "SET_USER_DATA") {
-        return action.payload
+        state = { ...state, ...action.payload }
+    }
+    if (action.type === "GET_POINTS") {
+        return state.points
+    }
+    if (action.type === "SET_POINTS") {
+        return { ...state, points: action.payload }
     }
     return state;
 }

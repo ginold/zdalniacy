@@ -1,44 +1,60 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import IconButton from '@material-ui/core/IconButton';
+import { connect } from 'react-redux'
+import NotificationsService from '../../services/notificationsService';
+import Fade from '@material-ui/core/Fade';
 
-class NotificationsButton extends Component {
-  render() {
-    return (
-      <Badge badgeContent="5" className="badge">
-        <PopupState variant="popover" popupId="popup-menu">
-          {popupState => (
-            <React.Fragment>
-              <IconButton className="icon-button" variant="contained" {...bindTrigger(popupState)}>
-                <NotificationsIcon className="icon"></NotificationsIcon>
-              </IconButton>
-              <Menu {...bindMenu(popupState)} className="popup-menu"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                getContentAnchorEl={null}
+function NotificationsButton(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const notifications = props.notifications.notifications || []
+  const unread = props.notifications.unread
 
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem onClick={popupState.close}>Zadanie na dziś: pogadaj z mentorem!</MenuItem>
-                <MenuItem onClick={popupState.close}>Zadanie na dziś: pogadaj z mentorem!</MenuItem>
-                <MenuItem onClick={popupState.close}>Zadanie na dziś: pogadaj z mentorem!</MenuItem>
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+    NotificationsService.resetUnread()
+  };
 
-              </Menu>
-            </React.Fragment>
-          )}
-        </PopupState>
-      </Badge>
-    );
-  }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Badge badgeContent={unread} className="badge">
+      <IconButton className="icon-button" variant="contained"
+        onClick={handleClick}>
+        <NotificationsIcon className="icon"></NotificationsIcon>
+      </IconButton>
+      <Menu
+        className="popup-menu"
+        anchorEl={anchorEl}
+        getContentAnchorEl={null}
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top', horizontal: 'right',
+        }}
+      >
+        {notifications.map((n, i) => {
+          return <MenuItem onClick={handleClose} key={i + '-notification'}>{n.title}</MenuItem>
+        })}
+        {notifications.length === 0 && <MenuItem onClick={handleClose}>Nie ma żadnych powiadomień.</MenuItem>}
+      </Menu>
+    </Badge>
+  );
 }
+const mapStateToProps = (state) => ({
+  notifications: state.notifications
+})
 
-export default NotificationsButton;
+export default connect(mapStateToProps)(NotificationsButton);

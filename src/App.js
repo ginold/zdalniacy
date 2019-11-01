@@ -49,7 +49,9 @@ const App = ({ history, pathname, isLogged }) => {
   return (
     <ConnectedRouter history={history}>
 
-      <Header></Header>
+      <Conditional if={pathname !== '/login' && pathname !== '/signup'}>
+        <Header></Header>
+      </Conditional>
       <Conditional if={pathname !== '/' || (pathname === '/' && isLogged)}>
         <Sidemenu />
       </Conditional>

@@ -7,8 +7,6 @@ $section-margin: 5%;
     justify-content: space-between;
     padding: 0 7%;
     flex-wrap: wrap;
-    height: calc(100vh  - #{$navigation-height});
-
 
     .component {
         background-color: whitesmoke;
@@ -65,15 +63,19 @@ $section-margin: 5%;
 }
 
 @include media-query(medium-screen) { 
-    .dashboard .tasks .task-card {
-        width: 100%;
-        margin-bottom: 5%;
+    .lesson-card {
+        width: 100% !important;
     }
     .dashboard {
         .recents, .courses {
             width: 100%;
         }
     }
-        
+}
+@include media-query(small-screen) {
+    .dashboard .tasks .task-card {
+        width: 100% !important;
+        margin-bottom: 5%;
+    }
 }
 

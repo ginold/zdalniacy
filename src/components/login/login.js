@@ -4,37 +4,47 @@ import TextField from '@material-ui/core/TextField';
 import logo from '../../static/logo/logo-wfb-white.svg';
 import PrimaryButton from '../primary-button/primary-button';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GTranslateIcon from '@material-ui/icons/GTranslate';
-
 import FacebookLogin from 'react-facebook-login';
-import Auth from "../../auth";
+import GTranslateIcon from '@material-ui/icons/GTranslate';
+import Auth from "../../services/auth";
+import unlockedLessonsService from "../../services/unlockedLessonsService";
 
 
 function Login(props) {
-
   const [values, setValues] = React.useState({
     password: '', email: '', fromFacebook: false
   });
-
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleFacebookLogin = res => {
     Auth.signIn()
     Auth.setUserData({ ...res, fromFacebook: true })
-    goTo('/work')
+    redirect()
   }
   const handleLogin = () => {
-    Auth.signIn()
-    Auth.setUserData(values)
-    goTo('/')
+    Auth.login({ password: values.password, email: values.email }).then(async (res) => {
+      if (res.status === 200) {
+        Auth.signIn()
+        const data = await unlockedLessonsService.getUnlockedLessonsByUserId(res.data._id)
+        Auth.setUserData({ ...res.data, unlockedLessons: data.lessons, points: 1000 })
+        redirect()
+      }
+    }).catch(err => console.log(err))
+  }
+  const redirect = () => {
+    if (props.location.state) {
+      goTo(props.location.state.from)
+    } else {
+      goTo('/')
+    }
   }
   const goTo = (path) => {
     props.history.push(path);
   }
   return (
     <div className="signup-signin-window">
-      <div className="signup-signin-container">
+      <section className="signup-signin-container">
         <div className="signup-signin-header">
           <img alt="white logo" src={logo}></img>
           <h1>Zaloguj się</h1>
@@ -44,6 +54,7 @@ function Login(props) {
             <PrimaryButton text="Nie masz konta?" onClick={() => goTo('/signup')} outlined />
 
             <TextField
+              id="email-input"
               label="E-mail"
               name="email"
               className="text-input"
@@ -55,6 +66,7 @@ function Login(props) {
               aria-label="E-mail"
             />
             <TextField
+              id="password-input"
               label="Hasło"
               name="password"
               className="text-input"
@@ -71,11 +83,11 @@ function Login(props) {
               <b>lub zaloguj się za pomocą</b>
               <div className="icons">
                 <span className="icon">
-                  <FacebookLogin
+                  {/* <FacebookLogin
                     appId="757649437992618"
                     size="small"
                     fields="name,email,picture"
-                    callback={handleFacebookLogin} />
+                    callback={handleFacebookLogin} /> */}
                 </span>
                 <span className="icon"><GTranslateIcon /></span>
               </div>
@@ -83,7 +95,7 @@ function Login(props) {
             </div>
           </form>
         </div>
-      </div>
+      </section>
     </div>
   )
 

@@ -15,10 +15,10 @@ const settings = [
 ]
 class Settings extends Component {
   render() {
-    return <section id="settings">
+    return <section id="settings" className="main-content">
       <div className="settings-container">
-        {settings.map((s) => {
-          return <Link to={{
+        {settings.map((s, i) => {
+          return <Link key={i + '-setting'} to={{
             pathname: '/settings/' + s.url, // TODO replace %%
           }} className="setting">
             <Card className="setting-card">

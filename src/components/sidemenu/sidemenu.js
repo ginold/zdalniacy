@@ -4,6 +4,7 @@ import FooterSidemenu from '../footer_sidemenu';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import logo from '../../static/logo/logo-wfb-white.svg';
 
 import PersonIcon from '@material-ui/icons/Person';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -69,7 +70,7 @@ function Sidemenu({ pathname }) {
     <aside id="sidemenu">
       {profilePictureUrl ?
         <Avatar alt="profile picture" className="profile-picture" src={profilePictureUrl} /> :
-        <Avatar alt="default profile picture" className="profile-picture"><PersonIcon className="profile-picture"></PersonIcon></Avatar>}
+        <Avatar alt="default profile picture" className="profile-picture"><img src={logo} alt="avatar" /></Avatar>}
 
       <div className="links-container">
         {currentLinks && currentLinks.map((el) => {

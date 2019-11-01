@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import EducationCard from '../educationCard';
 import './education.scss';
+import courseService from '../../services/courseService'
+
 const courseTypes = [
   { title: 'Marketing', type: 'marketing', count: 20 },
   { title: 'Design', type: 'design', count: 20 },
@@ -12,11 +14,11 @@ const courseTypes = [
 ]
 
 class Education extends Component {
-
+  // courseService.getAll()
   static courses = courseTypes;
 
   render() {
-    return <section id="education">
+    return <section id="education" className="main-content">
       <div className="education-container">
         {courseTypes.map((c) => { return <EducationCard key={c.title} courseType={c} /> })}
       </div>

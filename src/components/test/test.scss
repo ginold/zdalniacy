@@ -1,7 +1,6 @@
 @import '../../variables.scss';
 
 #test {
-    height: calc(100vh - #{$navigation-height});
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -32,7 +31,7 @@
     .question {
         .question-title {
             margin-top: 0;
-            font-size: 3em;
+            font-size: 2.2em;
             color: $primaryColor;
         }
     }

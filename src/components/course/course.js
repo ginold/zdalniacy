@@ -63,7 +63,7 @@ function Course(props) {
     }
     return Math.round(total / 60);
   }
-  return <section id="course">
+  return <section id="course" className="main-content">
     {course &&
       <Fade in={true}>
         <div className="course-container">
@@ -99,9 +99,9 @@ function Course(props) {
                 <div className="courses-list list">
                   <h3>Kursy</h3>
                   <ul>
-                    {Education.courses.map(c => {
+                    {Education.courses.map((c, i) => {
                       return (
-                        <Link to={"/education/courses/" + c.type} key={c.type}
+                        <Link to={"/education/courses/" + c.type} key={`${i}-education-link`}
                           onClick={() => getCourse(c.type)}>
                           <li>{c.title}</li>
                         </Link>)
@@ -111,15 +111,8 @@ function Course(props) {
               </div>
             </div>
             <div className="lessons">
-              {course.lessons.map(l => {
-                return (
-                  <Link to={{
-                    pathname: "/education/courses/" + courseType + "/" + l.title,
-                    state: l
-                  }}>
-                    <LessonCard lesson={l} key={l.description} />
-                  </Link>
-                )
+              {course.lessons.map((l, i) => {
+                return <LessonCard lesson={l} key={`${i}-lesson-card`} />
               })}
             </div>
           </div>

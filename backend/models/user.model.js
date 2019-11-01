@@ -7,7 +7,7 @@ const userSchema = new Schema({
     familyname: { type: String, required: true },
     firstname: { type: String, required: true },
     email: { type: String, required: true },
-    password: { type: String, required: true },
+    password: { type: String },
     city: { type: String },
     country: { type: String },
     picture: { type: String },
@@ -16,7 +16,8 @@ const userSchema = new Schema({
     points: { type: Number },
     jobsApplied: [job.schema],
     savedObjects: [saved.schema],
-    interests: [{ type: String }]
+    interests: [{ type: String }],
+    preferences: [{ type: Object }]
 }, {
     timestamps: true
 })

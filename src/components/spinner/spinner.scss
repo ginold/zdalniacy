@@ -3,11 +3,12 @@
     position: relative;
     text-align: center;
     width: 100%;
-
+    
     &.top {
         top: 15vh;
     }
     .css-0 {
+        transform: scale(.7);
         padding: 50px;
     }
 }

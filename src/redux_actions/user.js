@@ -14,3 +14,14 @@ export const setUserData = (userData) => {
         payload: userData
     }
 }
+export const getPoints = () => {
+    return {
+        type: "GET_POINTS"
+    }
+}
+export const setPoints = (points) => {
+    return {
+        type: "SET_POINTS",
+        payload: points
+    }
+}

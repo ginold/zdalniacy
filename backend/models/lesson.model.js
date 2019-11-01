@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const chapter = require('./chapter.model.js')
-const topic = require('./topic.model.js')
 const lessonTask = require('./lessonTask.model.js')
 
 const lessonSchema = new Schema({
@@ -14,7 +13,8 @@ const lessonSchema = new Schema({
     tasks: [lessonTask.schema],
     type: { type: String }, // video, reading...
     duration: { type: Number },
-    cost: { type: Number, required: true }
+    cost: { type: Number, required: true },
+    points: { type: Number }
 })
 
 const Lesson = mongoose.model('Lesson', lessonSchema);

@@ -7,11 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 class MessagesButton extends Component {
   render() {
     return (
-      <Badge badgeContent="1" className="badge">
-      <IconButton className="icon-button">
-        <MessageIcon className="icon"/>
-      </IconButton>
-    </Badge>
+      <Badge badgeContent="0" className="badge">
+        <IconButton className="icon-button">
+          <MessageIcon className="icon" />
+        </IconButton>
+      </Badge>
     );
   }
 }

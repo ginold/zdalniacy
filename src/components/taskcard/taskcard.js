@@ -18,8 +18,8 @@ class Taskcard extends Component {
   render() {
     const task = this.task;
 
-    return <Card className="task-card">
-      <CardActionArea>
+    return <Link to={`/${task.path}`} className="task-card">
+      <Card className="task-card-root">
         <CardMedia
           className="task-img"
           image={`/images/${task.imgUrl}.jpg`}
@@ -33,15 +33,13 @@ class Taskcard extends Component {
           </Typography>
         </CardContent>
         <p className="points">Zdobądź {task.points} punktów!</p>
-      </CardActionArea>
-      <CardActions className="buttons">
-        <Link to={`/${task.path}`}>
+        <div className="buttons">
           <PrimaryButton size="small" primary>
             {task.buttonText}
           </PrimaryButton>
-        </Link>
-      </CardActions>
-    </Card>
+        </div>
+      </Card>
+    </Link>
   }
 }
 

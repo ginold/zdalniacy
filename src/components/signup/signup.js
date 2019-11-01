@@ -16,28 +16,23 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import { Button } from '@material-ui/core';
-
-import { useDispatch } from 'react-redux';
-import { signIn, setUserData } from '../../redux_actions';
+import NotificationsService from '../../services/notificationsService'
+import Auth from '../../services/auth';
+import LoginButton from '../loginButton/loginButton';
 
 function Signup(props) {
-  let dispatch = useDispatch();
+  let from = null;
+  if (props.history.location.state) {
+    from = props.history.location.state.from
+  }
   const steps = ['Krok 1', 'Krok 2', 'Krok 3'];
-
   const containerElement = React.createRef()
   const stepsContainer = React.createRef()
   let containerWidth = () => { return parseInt(getComputedStyle(containerElement.current).width, 10) }
 
   const [disabledData, setDisabledData] = React.useState({
-    birthdate: '',
-    email: '',
-    phonenumber: '',
-    city: '',
-    country: '',
-    pssword: '',
-    surname: '',
-    name: '',
-    userName: ''
+    birthdate: '', email: '', phonenumber: '', city: '',
+    country: '', password: '', firstname: '', familyname: '', userName: ''
   })
 
   const [employerData, setEmployerData] = React.useState({
@@ -77,10 +72,13 @@ function Signup(props) {
 
   // TODO send only necessary values
   const createAccount = () => {
-    const data = { ...userData[values.userType + 'Data'], ...{ userType: values.userType } }
-    dispatch(signIn())
-    dispatch(setUserData(data))
-    goTo('/work')
+    const data = { ...userData[values.userType + 'Data'], ...{ userType: values.userType, points: 1000 } }
+    Auth.createAccount(data).then(() => {
+      Auth.signIn()
+      Auth.setUserData(data)
+      NotificationsService.pushNotification({ title: "Udało się! Witaj wsród nas :)" })
+      goTo('/work')
+    }).catch(err => console.log(err))
   }
 
   return (
@@ -99,17 +97,17 @@ function Signup(props) {
             <hr></hr>
             <Button className="choose-usertype" onClick={() => { step(values.currentStep + 1); setValues({ ...values, userType: 'disabled' }); }}>
               <PersonIcon></PersonIcon>
-              <p>Osobą niepełnosprawną</p>
+              <p className="usertype">Osobą niepełnosprawną</p>
             </Button>
             <hr></hr>
             <Button className="choose-usertype" onClick={() => { step(values.currentStep + 1); setValues({ ...values, userType: 'employer' }); }}>
               <WorkIcon></WorkIcon>
-              <p>Pracodawcą</p>
+              <p className="usertype">Pracodawcą</p>
             </Button>
             <hr></hr>
 
             <p>Masz już konto?</p>
-            <PrimaryButton text="Zaloguj się" onClick={() => goTo('/login')} outlined />
+            <LoginButton from={from} outlined />
             <p>lub</p>
             <PrimaryButton text="Wróć do strony głównej" onClick={() => goTo('/')} outlined green />
           </div>
