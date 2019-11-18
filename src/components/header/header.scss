@@ -35,11 +35,6 @@ header {
             color: $primaryColor;
         }
     }
-    .MuiBadge-badge {
-        background-color: $primaryColor;
-        color: white;
-        transform: scale(1.2) translate(20%, -50%);
-    }
 }
 
 // added shadow for work/job path in .js file
@@ -66,6 +61,9 @@ nav {
         font-size: 1.4em;
         .active-link {
             color: $primaryColor !important;
+        }
+        .primary-button, .outlined-button {
+            font-size: .75em !important;
         }
     }
 

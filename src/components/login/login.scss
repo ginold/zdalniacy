@@ -26,25 +26,29 @@
         color: white;
         height: 100px;
         display: flex;
-        padding: 20px 50px;
+        padding: 20px 20px;
         text-align: center;
-        h1 {
+        .title  {
             width: 100%;
             color: white;
-            margin-top: 30px;
+            margin: auto 10px;
         }
         img {
-            width: 100px;
+            width: 80px;
         }
     }
-    b {
-        margin-bottom: 20px;
+    .remember-me {
+        margin-bottom: 10px;
     }
     .other-login-options {
         margin-top: 20px;
     }
+    .outlined-button, .primary-button {
+        margin: auto;
+        min-width: 200px;
+    }
     .form-container {
-        padding: 40px;
+        padding: 20px 40px;
         background-color: white;
         >* {
             display: flex;
@@ -57,7 +61,8 @@
             display: flex;
             justify-content: center;
             flex-direction: row;
-            margin: 20px 0 20px 0;
+            margin: 10px;
+
             .icon {
                 display: flex;
                 svg {
@@ -65,9 +70,6 @@
                     color: $primaryColor;
                 }
             }
-        }
-        .primary-button, .outlined-button {
-            margin: auto;
         }
     }
 }

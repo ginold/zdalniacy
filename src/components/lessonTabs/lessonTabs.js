@@ -38,7 +38,6 @@ function a11yProps(index) {
   };
 }
 
-
 function LessonTabs(props) {
   const lesson = props.lesson
   const [value, setValue] = React.useState(0);

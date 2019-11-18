@@ -1,36 +1,47 @@
 @import '../../variables.scss';
-
 .job-offer-card {
     display: flex;
-    flex-wrap: wrap; 
-    color: $primaryBlack;
     height: 100%;
-    .MuiCardActionArea-root {
-        height: 100%;
-        padding-top: 10px
+    width: 100%;
+    
+    .job-offer-card-content-root {
+        padding: 0 0 15px 20px;
+        width: 100%;
     }
-    svg { color: $primaryBlack; }
-    .card-root {width: 100%;}
-    .job-offer-img {
-        width: 140px;
-        margin-left: 20px;
-        background-size: contain;
-    }
-    .job-offer-top, .job-offer-bottom, .time, .location, 
-    .date-added {
+    .job-offer-card-link {
+        width: 100%;
+        color: $primaryBlack;
         display: flex;
     }
-    .job-offer-bottom {
-        justify-content: space-around;
-        padding: 10px 0;
+    .job-description {
+        overflow: hidden;
+        display: -webkit-box;
+        font-size: 1em;
+        -webkit-box-orient: vertical;
+        /* Limit the text block to three lines */
+        -webkit-line-clamp: 3;
+    }
+    svg { color: #4e7196; }
+    .job-offer-img {
+        width: 100px;
+        height: 100px;
+        background-size: contain;
+    }
+    .job-offer-card-action-area {
+        padding: 15px;
+        font-size: .8em;
+        display: inherit;
+        justify-content: flex-start;
+    }
+    .card-actions {
+        justify-content: center;
+        padding: 15px 2.5%;
+        width: 25%;
+        flex-wrap: wrap;
 
-        > * {
-            align-items: center;
-        }
-
-        .text {
-            margin-left: 5px;
+        button {
+            width: 100%;
+            margin-left: 0;
         }
     }
-    
 }

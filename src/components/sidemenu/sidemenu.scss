@@ -4,11 +4,10 @@ aside {
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-width: 25vw;
-    min-width: $sidemenu-width;
+    width: $sidemenu-width;
     background-color: $primaryBlack;
     color: white;
-    font-size: 1.4em;
+    font-size: 1.3em;
     border-right: 1px solid white;
     position: fixed;
     z-index: 20;
@@ -28,14 +27,15 @@ aside {
     .links-container {
         font-size: .9em;
         margin-top: 30px;
-        display: flex;
-        flex-direction: column;
+        padding-left: 30px;
+        display: inline;
 
         .sidemenu-link-icon {
             margin-right: 20px;
         }
         .sidemenu-link {
             margin-bottom: 25px;
+            padding-right: 20px;
             &:hover {
                 color: $primaryColor;
                 svg {

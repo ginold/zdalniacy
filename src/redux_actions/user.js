@@ -19,6 +19,12 @@ export const getPoints = () => {
         type: "GET_POINTS"
     }
 }
+export const addTotalPoints = (points) => {
+    return {
+        payload: points,
+        type: "ADD_TOTAL_POINTS"
+    }
+}
 export const setPoints = (points) => {
     return {
         type: "SET_POINTS",

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const lesson = require('./lesson.model')
+const TOPICS = ['ux/ui', 'programming', 'design', 'backend', 'fron-tend', 'adobe', 'javascript']
+const INTERESTS = ['advertisment', 'film', 'computer_science', 'foreign_languages']
 
 const jobSchema = new Schema({
     title: { type: String, required: true },
@@ -8,7 +9,16 @@ const jobSchema = new Schema({
     company: { type: String, required: true },
     location: { type: String, required: true },
     time: { type: String, required: true },
-    lessonsNeeded: [lesson.schema]
+    requirements: { type: String },
+    modelType: { type: String, default: 'job' },
+    lessonsNeeded: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Lessson'
+    }],
+    tags: [{
+        type: String,
+        enum: TOPICS.concat(INTERESTS)
+    }]
 }, {
     timestamps: true
 })

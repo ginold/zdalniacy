@@ -3,6 +3,7 @@ import PulseLoader from 'react-spinners/PulseLoader';
 import './spinner.scss';
 
 class Spinner extends Component {
+
   render() {
     return <span className={this.props.className + ' spinner'}>
       <PulseLoader

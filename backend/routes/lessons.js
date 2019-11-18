@@ -1,5 +1,5 @@
 const router = require('express').Router()
-let Lesson = require('../models/lesson.model').model;
+let Lesson = require('../models/lesson.model');
 
 // route: /lessons/
 router.route('/').get((req, res) => {
@@ -16,8 +16,8 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('error: ' + err))
 })
 
-router.route('/courseType/:type').get((req, res) => {
-    Lesson.find({ courseType: req.params.type })
+router.route('/lessonType/:type').get((req, res) => {
+    Lesson.find({ lessonType: req.params.type })
         .then(lesson => res.json(lesson))
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -28,13 +28,13 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('error: ' + err))
 })
 // update
-router.route('/update/:id').post((req, res) => {
-    Lesson.findById(req.params.id)
-        .then(lesson => {
-            lesson = req.body
-            lesson.save()
-                .then(() => res.json('lesson updated'))
-                .catch(err => res.status(400).json('err ' + err))
+router.route('/update/:id').post(async (req, res) => {
+    let oldLesson = await Lesson.findById(req.params.id)
+    let newLesson = { ...oldLesson._doc, ...req.body }
+
+    Lesson.findOneAndUpdate({ _id: req.params.id }, newLesson, { new: true })
+        .then(result => {
+            res.status(200).json('lesson updated! ' + result)
         })
         .catch(err => res.status(400).json('error: ' + err))
 })

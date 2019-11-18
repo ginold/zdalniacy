@@ -1,16 +1,40 @@
 @import '../../variables.scss';
 
-.job-offer-details-container {
-    grid-template-columns: 5% 65% 25% 5%;
-    display: grid;
+#job-offer-details {
     background-color: white;
     color: $primaryBlack;
-    padding: 5% 0;
-
-    .column-1 {
-        grid-column-start: 2;
-        grid-column-end: 3;
+    overflow: auto;
+    
+    .job-offer-details-container {
+        display: grid;
+        grid-template-columns: 35% 35% 30%;
+        grid-template-areas: 'description description side'
+                        'lessons lessons lessons'
+                        'bottom bottom bottom';
+        padding: 30px 5%;
+    }
+    .side {
+        grid-area: side;
+    }
+    .lessons-needed {
+        grid-area: lessons;
+        .lessons-container {
+            background-color: whitesmoke;
+            padding: 20px;
+        }
+        .lessons-done {
+            color: green;
+        }
+    }
+    .job-description {
+        grid-area: description;
         padding-right: 40px;
+    }
+    .job-offer-above-header{
+        margin: 0;
+        font-size: 1.3em;
+        color: lightslategrey;
+        font-family: sans-serif;
     }
     .thumbnail { width: 100px;}
 
@@ -26,12 +50,13 @@
         display: flex;
         justify-content: space-evenly;
         margin-top: 40px;
+        grid-area: bottom;
 
         .primary-button, .outlined-button {
             width: 30%;
         }
     }
-    .job-offer-header{
+    .job-offer-header {
         display: flex;
         align-items: center;
 
@@ -40,16 +65,23 @@
             color: $primaryColor;
         }
     }
-    .job-offer-card {
-        margin-bottom: 15px;
-        .job-offer-img {
-            width: 100px;
-        }
-        .location, .description {
-            display: none;
-        }
-        .title {
-            font-size: 1rem;
+    .similar-job-offers {
+        .job-offer-card {
+            margin-bottom: 15px;
+            
+            .card-actions, .date-added, .job-offer-img,
+            .location, .description {
+                display: none;
+            }
+            .job-offer-card-link {
+                width: 100%;
+            }
+            .title {
+                font-size: 1.2rem;
+            }
+            .job-offer-card-content-root {
+                width: 100%;
+            };
         }
     }
 }

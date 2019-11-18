@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import PrimaryButton from '../primary-button/primary-button';
 import './taskcard.scss';
 import { Link } from 'react-router-dom';
+import Auth from '../../services/auth';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Conditional from '../conditional/conditional';
 
 class Taskcard extends Component {
   constructor(props) {
     super(props)
     this.task = props.task
+    this.state = { isAccomplished: false }
   }
+  componentDidMount() {
+    this.checkIsAccomplished()
+  }
+  checkIsAccomplished = () => {
+    for (let task of Auth.getUserData().accomplished.tasks) {
+      if (this.task._id === task) this.setState({ isAccomplished: true })
+    }
+  }
+
   render() {
     const task = this.task;
 
-    return <Link to={`/${task.path}`} className="task-card">
+    return <Link to={{
+      pathname: `/${task.type}`,
+      state: { id: task._id }
+    }} className={"task-card " + (this.state.isAccomplished ? 'accomplished' : '')}>
       <Card className="task-card-root">
+        {this.state.isAccomplished && <CheckCircleIcon className="check-icon" />}
         <CardMedia
           className="task-img"
           image={`/images/${task.imgUrl}.jpg`}
@@ -32,12 +47,19 @@ class Taskcard extends Component {
             {task.description}
           </Typography>
         </CardContent>
-        <p className="points">Zdobądź {task.points} punktów!</p>
-        <div className="buttons">
-          <PrimaryButton size="small" primary>
-            {task.buttonText}
-          </PrimaryButton>
-        </div>
+
+        <Conditional if={!this.state.isAccomplished}>
+          <p className="points">Zdobądź {task.points} punktów!</p>
+          <div className="buttons">
+            <PrimaryButton size="small" primary>
+              {task.buttonText}
+            </PrimaryButton>
+          </div>
+        </Conditional>
+        <Conditional if={this.state.isAccomplished}>
+          <b>Zadanie ukończone!</b>
+        </Conditional>
+
       </Card>
     </Link>
   }

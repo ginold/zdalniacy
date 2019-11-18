@@ -1,22 +1,28 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const chapter = require('./chapter.model.js')
-const lessonTask = require('./lessonTask.model.js')
 
 const lessonSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     imgUrl: { type: String },
-    chapters: [chapter.schema],
+    chapters: [{
+        title: { type: String },
+        subchapters: [{ type: String }]
+    }],
     courseType: { type: String },
     topics: [{ type: String }],
-    tasks: [lessonTask.schema],
+    tasks: [{
+        title: { type: String, required: true },
+        description: { type: String, required: true }
+    }],
     type: { type: String }, // video, reading...
     duration: { type: Number },
     cost: { type: Number, required: true },
-    points: { type: Number }
+    points: { type: Number },
+    schemaType: { type: String },
+    reward: { type: Number },
+    modelType: { type: String, default: 'lesson' }
 })
 
 const Lesson = mongoose.model('Lesson', lessonSchema);
-module.exports.model = Lesson;
-module.exports.schema = lessonSchema;
+module.exports = Lesson

@@ -10,30 +10,19 @@
         flex-wrap: wrap;
         position: relative;
         display: flex;
-        padding: 4vw;
+        padding: 2vw 4vw;
         justify-content: space-between;
         margin-top: $filters-height;
         overflow: auto;
 
         .card-item {
-            width: 48%;
-            margin-bottom: 3%;
+            margin-bottom: $card-margin-bottom;
+            width: 100%;
         }
     }
     .no-results {
         width: 100%;
         text-align: center;
-    }
-}
-
-@media only screen and (max-width: 900px) {
-    .work .job-offers .card-item {
-        width: 100% !important;
-    }
-}
-@include media-query(wide-screen) { 
-    .work .job-offers .card-item {
-        width: 30% !important;
     }
 }
 

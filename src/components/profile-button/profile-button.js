@@ -8,14 +8,12 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
 import Fade from '@material-ui/core/Fade';
-
+import PointsCounter from '../pointsCounter'
 import './profile-button.scss';
 import Auth from '../../services/auth';
 
 function ProfileButton(props) {
-  const points = props.points
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -28,8 +26,9 @@ function ProfileButton(props) {
   };
 
   return (
-    <>
-      {Auth.getUserType() !== 'employer' && <div className="points">{points} pkt</div>}
+    <span>
+
+      <PointsCounter />
       <IconButton
         className="icon-button"
         variant="contained"
@@ -63,11 +62,9 @@ function ProfileButton(props) {
         <hr></hr>
         <MenuItem onClick={() => { Auth.signOut(); handleClose() }}><ExitToAppIcon className="icon"></ExitToAppIcon><span>Wyloguj</span></MenuItem>
       </Menu>
-    </>
+
+    </span>
   );
 }
-const mapStateToProps = state => {
-  return { points: state.userData.points }
-}
 
-export default connect(mapStateToProps)(ProfileButton);
+export default ProfileButton

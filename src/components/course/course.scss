@@ -31,7 +31,7 @@
         }
     }
     .text, .info {
-        padding:50px 0;
+        padding: 30px 0;
         z-index: 3;
     }
     .text {
@@ -46,7 +46,7 @@
     .info {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: inherit;
         font-size: 1.2em;
         width: 30%;
         padding-left: 30px;
@@ -61,7 +61,7 @@
     .lessons-container {
         background-color: whitesmoke;
         color: black;
-        padding: 50px 6vw;
+        padding: 50px 4vw;
         display: flex;
 
         &.fixed {
@@ -72,10 +72,11 @@
         }
 
         .lessons {
-            width: 70%;
+            width: 100%;
+            padding-left: 20px;
         }
         .lists-container {
-            width: 30%;
+            width: 210px;
             position: sticky;
             top: 0;
             font-size: 1.2em;
@@ -100,15 +101,17 @@
                 }
                 
                  ul a {
+                    display: block;
                     color: $primaryBlack;
                 }
             }
         }
     }
     .not-found {
-        font-size: 2em;
-        padding-top: 15vh;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 @include media-query(medium-screen) { 

@@ -4,6 +4,10 @@
 .signup-signin-container {
     overflow: hidden;
 
+    form {
+        display: flex;
+        width: 100%;
+    }
     h2 {
         margin-top: 0;
         margin-bottom: 0;
@@ -48,6 +52,13 @@
     }
 }
 .signup-signin-window {
+    &.loading {
+        button {
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+        }
+    }
     .info {
         font-size: 1.2em;
         color: white;

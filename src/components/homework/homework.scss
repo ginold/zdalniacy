@@ -1,0 +1,52 @@
+#homework {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+    .homework-container {
+        padding: 40px 10%;
+        width: 100vw;
+    }
+    .lesson-title {
+        display: flex;
+        align-items: center;
+        :first-child {
+            margin-right: 10px;
+        }
+    }
+    .header-div {
+        display: flex;
+        align-items: center;
+
+        .header {
+            width: calc(100% - 100px);
+        }
+        button {
+            color: white !important;
+        }
+    }
+    .task {
+        padding: 30px;
+        margin-top: 20px;
+        &:not(:last-of-type) {
+            margin-bottom: 20px;
+        }
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        button {
+            margin-right: 20px;
+            height: 40px;
+        }
+    }
+    img {
+        width: 80%;
+    }
+    h1,h2 {
+        margin:0;
+    }
+}

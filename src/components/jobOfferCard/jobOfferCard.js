@@ -3,62 +3,51 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import './jobOfferCard.scss';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import TimelapseIcon from '@material-ui/icons/Timelapse';
-import TodayIcon from '@material-ui/icons/Today';
-import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import SaveButton from '../saveButton/saveButton';
+import PreviewJobButton from '../previewJobButton/previewJobButton';
+import JobProperties from '../jobProperties/jobProperties'
 
 function JobOfferCard(props) {
   const job = props.jobOffer
 
   return (
-    <Link to={{
-      pathname: '/work/job/' + job._id, // TODO replace %%
-      state: job
-    }} className="job-offer-card">
-      <Card className="card-root">
+    <Card className="job-offer-card">
+      <Link to={{
+        pathname: '/work/job/' + job._id, // TODO replace %%
+        state: job
+      }} className="job-offer-card-link">
 
-        <CardActionArea>
-          <div className="job-offer-top">
-            <CardMedia className="job-offer-img" image={"/images/company/" + job.company + ".png"} title={`oferta pracy ${job.title}`}></CardMedia>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2" className="title">
-                {job.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {job.description}
-              </Typography>
-            </CardContent>
+        <CardActionArea className="job-offer-card-action-area">
+          <CardMedia className="job-offer-img" image={"/images/company/" + job.company + ".png"} title={`oferta pracy ${job.title}`}></CardMedia>
+          <CardContent className="job-offer-card-content-root">
 
-            {/* <CardActions>
-              <Button size="small" color="primary">
-                Learn More
-              </Button>
-            </CardActions> */}
-          </div>
+            <Typography gutterBottom variant="h5" component="h2" className="title">
+              {job.title}
+            </Typography>
+            <JobProperties job={job} />
 
-          <div className="job-offer-bottom">
-            <div className="date-added">
-              <TodayIcon />
-              <Moment fromNow className="text">{job.createdAt}</Moment>
-            </div>
-            <div className="location">
-              <LocationOnIcon />
-              <span className="text">{job.location}</span>
-            </div>
-            <div className="time">
-              <TimelapseIcon />
-              <span className="text">{job.time}</span>
-            </div>
-          </div>
+            <Typography variant="body2" color="textSecondary" component="p" className="job-description">
+              {job.description}
+            </Typography>
+          </CardContent>
+
         </CardActionArea>
-
-      </Card>
-    </Link>
+      </Link>
+      <CardActions className="card-actions">
+        <SaveButton object={job} type="jobs" />
+        <PreviewJobButton job={job} />
+      </CardActions>
+    </Card>
   );
 }
+
+JobOfferCard.propTypes = {
+  jobOffer: PropTypes.object
+};
 
 export default JobOfferCard;

@@ -14,6 +14,11 @@ router.route('/:id').get((req, res) => {
         .then(task => res.json(task))
         .catch(err => res.status(400).json('error: ' + err))
 })
+router.route('/type/:type').get((req, res) => {
+    Task.findOne({ type: req.params.type })
+        .then(task => res.json(task))
+        .catch(err => res.status(400).json('error: ' + err))
+})
 
 router.route('/:id').delete((req, res) => {
     Task.findByIdAndDelete(req.params.id)

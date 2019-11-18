@@ -19,8 +19,8 @@ function Header(props) {
   const isLogged = props.isLogged
 
   // set box-shadow FIX IT some day pls
-  useEffect(() => {
-    if (pathname.indexOf("work/job") > -1 && headerRef != null) {
+  useEffect(() => {                             // /education/courses/xxx/
+    if ((pathname.indexOf("work/job/") > -1 || /^(\/education\/courses\/.*?\/)/.test(pathname)) && headerRef != null) {
       headerRef.current.style.boxShadow = "2px 2px 2px #cbcbcb"
     } else {
       headerRef.current.style.boxShadow = "";
@@ -37,12 +37,12 @@ function Header(props) {
           <Conditional if={Auth.getUserType() === 'employer' && isLogged}>
             <li className="nav-link"><Link to="/addJobOffer"><PrimaryButton text="Dodaj ofertę" primary /></Link></li>
           </Conditional>
-          <li className="nav-link"><NavLink to="/work" activeClassName="active-link"><span>Praca</span></NavLink></li>
+          {isLogged && <li className="nav-link"><NavLink to="/dashboard" activeClassName="active-link"><span>Dashboard</span></NavLink></li>}
+          <li className="nav-link"><NavLink to="/work/jobOffers" activeClassName="active-link"><span>Praca</span></NavLink></li>
           <li className="nav-link"><NavLink to="/social" activeClassName="active-link"><span>Społeczność</span></NavLink></li>
           <li className="nav-link"><NavLink to="/education/courses" activeClassName="active-link"><span>Edukacja</span></NavLink></li>
 
           <Conditional if={isLogged}>
-            <li className="nav-link"><NavLink to="/tasks" activeClassName="active-link"><span>Zadania</span></NavLink></li>
             <li className="nav-link"><MessagesButton /></li>
             <li className="nav-link"><NotificationsButton /></li>
             <li className="nav-link profile-button"><ProfileButton /></li>

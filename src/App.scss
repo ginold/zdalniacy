@@ -5,6 +5,8 @@ html, body {
   padding: 0;
   height: 100%;
   background-color: black;
+ //   font-family: 'Poppins', sans-serif;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -40,6 +42,12 @@ a, a svg {
 h1 { 
   color: $primaryColor;
   margin-top: 0;
+  font-size: 3em;
+}
+.MuiBadge-badge {
+    background-color: $primaryColor;
+    color: white;
+    transform: scale(1.2) translate(20%, -50%);
 }
 
 .signup-login-animation-container { height: 100%;}
@@ -51,7 +59,8 @@ h1 {
     height: 100%;
   }
 }
-.signup, .login, .settings, .test {
+.signup, .login, .settings, .entry_test, .not_found,
+.exams {
   &.App {
     margin-top: 0;
   }
@@ -63,16 +72,17 @@ h1 {
     overflow: hidden; // glichy effects when transition between login and signup
   }
 }
+
+
 /* The default outline styling, for greatest accessibility. */
 /* You can skip this to just use the browser's defaults. */
 :focus {
   outline: none;
-  border: dashed 3px orange;
+ // border: dashed 3px orange ;
 }
-
 /* When mouse is detected, ALL focused elements have outline removed. */
 /* You could apply this selector only to buttons, if you wanted. */
-body.using-mouse :focus {
+body.using-mouse:focus {
   outline: none;
   border: none;
 }

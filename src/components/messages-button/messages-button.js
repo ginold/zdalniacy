@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 class MessagesButton extends Component {
   render() {
     return (
-      <Badge badgeContent="0" className="badge">
+      <Badge badgeContent={null} className="badge">
         <IconButton className="icon-button">
           <MessageIcon className="icon" />
         </IconButton>

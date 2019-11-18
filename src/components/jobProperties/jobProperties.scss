@@ -1,0 +1,15 @@
+.job-properties {
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        display: flex;
+        text-transform: capitalize;
+
+        .property {
+            align-items: center;
+            display: inherit;
+            margin-right: 15px;
+        }
+        .text {
+            margin-left: 5px;
+        }
+    }

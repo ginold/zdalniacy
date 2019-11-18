@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
     title: { type: String, required: true },
+    type: { type: String },
     description: { type: String, required: true },
     points: { type: String, required: true },
     buttonText: { type: String, required: true },

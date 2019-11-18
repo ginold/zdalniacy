@@ -1,16 +1,22 @@
 const router = require('express').Router()
 let Job = require('../models/job.model');
+const Lesson = require('../models/lesson.model');
 
 // route: /jobs/
 router.route('/').get((req, res) => {
     Job.find()
-        .then(jobs => res.json(jobs))
-        .catch(err => res.status(400).json('error: ' + err))
+        .populate({ path: 'lessonsNeeded', model: Lesson })
+        .sort({ createdAt: 'desc' })
+        .exec((err, docs) => {
+            if (err) res.status(400).json(err)
+            res.status(200).json(docs)
+        });
 })
 
 // route: /jobs/218937
 router.route('/:id').get((req, res) => {
     Job.findById(req.params.id)
+        .populate({ path: 'lessonsNeeded', model: Lesson })
         .then(job => res.json(job))
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -22,24 +28,36 @@ router.route('/:id').delete((req, res) => {
 })
 // update
 router.route('/update/:id').post((req, res) => {
-    Job.findById(req.params.id)
-        .then(job => {
-            job = req.body
-            job.save()
-                .then(() => res.json('job updated'))
-                .catch(err => res.status(400).json('err ' + err))
+    const update = { ...req.body }
+    Job.findOneAndUpdate({ _id: req.params.id }, update)
+        .then(result => {
+            res.status(200).json('job updated! ' + result)
         })
         .catch(err => res.status(400).json('error: ' + err))
 })
 
 // route: /jobs/add
 router.route('/add').post((req, res) => {
-    const { title, description, company, time, location } = req.body
-    const newJob = new Job({ title, description, company, location, time })
+    let lessonsNeeded = []
+    const lessonPromises = req.body.lessonsNeeded.map(lessonId => {
+        // const newCourse = new Lesson({ ...course })
+        return new Promise((resolve) => {
+            Lesson.findById(lessonId).then(lesson => {
+                lessonsNeeded.push(lesson)
+                resolve(lesson)
+            })
+        })
+    });
+    Promise.all(lessonPromises).then(() => {
+        const newJob = new Job({ ...req.body, lessonsNeeded })
+        newJob.save()
+            .then(() => res.json('job added'))
+            .catch(err => res.status(400).json('error ' + err))
+        console.log('job added!')
+        res.status(200).json('job added')
 
-    newJob.save()
-        .then(() => res.json('job added'))
-        .catch(err => res.status(400).json('error ' + err))
+    }, (error) => { console.warn(error) })
+
 })
 
 module.exports = router

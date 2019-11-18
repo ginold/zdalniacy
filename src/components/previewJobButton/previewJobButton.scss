@@ -1,0 +1,36 @@
+.job-preview-dialog {
+    [role="dialog"] {
+        max-width: 54vw;
+        position: fixed;
+        right: 0;
+        max-height: 100vh;
+        height: 100vh;
+        top: 0;
+        width: 100vw;
+        margin: 0;
+        background-color: whitesmoke;
+        padding: 50px;
+        overflow: auto;
+
+        .preview-container {
+            padding-bottom: 100px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-evenly;
+            > * {
+                min-width: 160px;
+            }
+        }
+        .lessons-needed {
+            margin-bottom: 40px
+        }
+        .close-button {
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}

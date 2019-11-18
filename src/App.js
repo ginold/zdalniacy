@@ -16,17 +16,25 @@ import Messages from './components/messages'
 import LandingPage from './components/landingPage'
 import Dashboard from './components/dashboard'
 import JobOfferDetails from './components/jobOfferDetails'
-import posed, { PoseGroup } from 'react-pose';
 import Settings from './components/settings';
 import Course from './components/course';
-import Test from './components/test';
+import EntryTest from './components/entryTest';
+import SavedJobs from './components/savedJobs';
+import SavedLessons from './components/savedLessons';
+import JobsApplied from './components/jobsApplied';
+import NotFound from './components/notFound';
 
 import AccessibilityFab from './components/accessibility-fab';
 import MessageFab from './components/message-fab';
 import LessonDetails from './components/lessonDetails/lessonDetails';
+import Auth from './services/auth';
+import Exam from './components/exam/exam';
+import AccomplishedLessons from './components/accomplishedLessons/accomplishedLessons';
 
 // mapped properties at bottom
 const App = ({ history, pathname, isLogged }) => {
+  Auth.signInIfRemembered()
+
   // Let the document know when the mouse is being used
   // for keyboard / mouse focus navigation (accessibility)
   document.body.addEventListener('mousedown', function () {
@@ -37,10 +45,6 @@ const App = ({ history, pathname, isLogged }) => {
   });
   let path = pathname.slice(1).split('/')[0]
 
-  let SignInUpContainer = posed.div({
-    enter: { opacity: 1, delay: 200, beforeChildren: true, transition: { duration: 200 } },
-    exit: { opacity: 0 }
-  });
   const addClassToRoot = () => {
     document.getElementById('root').className = path + " App";
   }
@@ -64,26 +68,31 @@ const App = ({ history, pathname, isLogged }) => {
           <Route exact path="/dashboard">
             {!isLogged ? <Redirect to="/login" /> : <Dashboard />}
           </Route>
-          <Route path="/test" component={Test} />
-          <Route path="/work" exact component={Work} />
+          <Route path="/entry_test" exact component={EntryTest} />
+          <Route path="/work/jobOffers" component={Work} />
+          <Route path="/work/recommended" component={props => <Work {...props} />} />
           <Route path="/work/job/:title" component={JobOfferDetails} />
+          <Route path="/work/jobsSaved" component={SavedJobs} />
+          <Route path="/work/jobsApplied" component={JobsApplied} />
 
           <Route path="/social" component={Social} />
+
           <Route path="/education/courses" exact component={Education} />
           <Route path="/education/courses/:type" exact component={Course} />
           <Route path="/education/courses/:type/:lesson" component={LessonDetails} />
+          <Route path="/education/lessonsSaved" component={SavedLessons} />
+          <Route path="/education/accomplishedLessons" component={AccomplishedLessons} />
 
           <Route path="/social/messages" component={Messages} />
           <Route path="/settings" exact component={Settings} />
 
-          <Conditional if={pathname === '/signup' || pathname === '/login'}>
-            <PoseGroup>
-              <SignInUpContainer className="signup-login-animation-container" key={Math.random()}>
-                <Route path="/signup" component={Signup} key="signup" />
-                <Route path="/login" component={Login} key="login" />
-              </SignInUpContainer>
-            </PoseGroup>
-          </Conditional>
+          <Route path="/exams/lesson/:id" component={Exam} />
+
+          <Route path="/signup" exact component={Signup} key="signup" />
+          <Route path="/login" exact component={Login} key="login" />
+
+          <Route path="/not_found" exact component={NotFound} />
+          <Redirect from="*" to="/not_found" />
 
         </Switch>
         <div className="floating-buttons">

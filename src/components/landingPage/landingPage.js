@@ -1,19 +1,26 @@
 import React, { useEffect } from 'react';
 import './landingPage.scss';
 import JobService from '../../services/jobService.js'
-import JobOfferCard from '../jobOfferCard';
 import { Link } from 'react-router-dom';
 import points from '../../static/landing/points.svg';
 import apply from '../../static/landing/apply.svg';
 import tutorials from '../../static/landing/tutorials.svg';
 import Footer from '../footer'
+import TextField from '@material-ui/core/TextField';
+import PrimaryButton from '../primary-button';
 
 function LandingPage() {
 
   const [jobs, setJobs] = React.useState([])
+  const [search, setSearch] = React.useState('')
   const getJobs = async () => {
     JobService.getAll().then((res) => { setJobs(res) })
   }
+  const submit = (e) => {
+    e.preventDefault();
+    document.getElementById('search-job-button').click()
+  }
+
   useEffect(() => {
     if (!jobs.length) getJobs()
   }, []) // empty array => runs only once
@@ -25,14 +32,31 @@ function LandingPage() {
         <div className="work-text">
           <h1>Leż i pracuj wygodnie z domu.</h1>
           <p>Mamy dla Ciebie {jobs.length} ofert pracy.</p>
-          <Link to="/work"><p>Sprawdź, gdzie pasujesz!</p></Link>
+          <Link to="/work/jobOffers"><p>Sprawdź, gdzie pasujesz!</p></Link>
         </div>
-        {jobs.length > 0 &&
-          <div className="job-cards">
-            <JobOfferCard jobOffer={jobs[3]} />
-            <JobOfferCard jobOffer={jobs[4]} />
-            <JobOfferCard jobOffer={jobs[5]} />
-          </div>}
+        <div className="search-job">
+          <h2 className="search-title">Wyszukaj ofertę pracy dla Ciebie!</h2>
+          <form onSubmit={submit}>
+            <TextField
+              id="outlined-search"
+              label="Tytuł, pracodawca..."
+              type="search"
+              placeholder='Na przykład "Facebook"'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              margin="normal"
+              variant="outlined"
+            />
+
+            <Link
+              id='search-job-button'
+              to={{
+                pathname: "/work/jobOffers",
+                search: `?search=${search}`,
+                params: { search }
+              }}><PrimaryButton primary>Szukaj!</PrimaryButton></Link>
+          </form>
+        </div>
       </div>
 
       <div className="features">

@@ -4,7 +4,7 @@
     height: 100%;
     background: linear-gradient(25deg, #172231 54%, #ce52a2 114%);
     .landing-page-container{
-        padding: 50px 10%;
+        padding: 50px 8vw;
         height: calc(100% - 2*50px);
         overflow: auto;
     }
@@ -14,19 +14,43 @@
         justify-content: space-between;
         align-items: center;
         height: calc(100vh - (#{$navigation-height} + 50px));
-        .job-cards {
-            width: 45%;
+        form {
+            display: flex;
+            flex-direction: column;
         }
-        .job-offer-card {
-            margin-bottom: 20px;
+        .search-job {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            background-color: #faebd726 !important;
+            color: white;
+            margin-left: 5vw;
             
+            a {
+                margin-top: 20px;
+                text-align: center;
+            }
+            .search-title {
+                margin-top: 0;
+            }
+        }
+        .MuiFormControl-root {
+            width: 100%;
+            fieldset {
+               border-color: white;
+            }
+            label, .MuiInputBase-root {
+                color: white !important;
+            }
         }
     }
     .work-text {
         text-align: center;
         width: 45%;
-        font-size: 2em;
         color: white;
+        p { font-size: 2em; }
+        h1 { font-size: 3.4em;}
     }
     .features {
         display: flex;

@@ -34,6 +34,7 @@ function Course(props) {
       setAllLessons(course.lessons)
       setCourseNotFound(false)
       setCourse(course)
+      console.log(course)
       setCourseLessonsTopics(getTopics(course))
     }
   }
@@ -46,7 +47,7 @@ function Course(props) {
     return [...new Set(topics)]; // unique array
   }
   const filterLessonsByTopic = (topic) => {
-    if (topic === selectedTopic) {
+    if (topic === selectedTopic) { // unselect 
       setCourse({ ...course, lessons: allLessons })
       setSelectedTopic(null)
       return

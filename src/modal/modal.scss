@@ -1,20 +1,22 @@
 @import '../variables.scss';
-
-div[role="presentation"] {
-    display: flex;
+.modal-window {
+    margin-top: 50vh;
+    transform: translate(0, -50%);
+    height: 100%;
     justify-content: center;
     align-items: center;
-}
-.modal-window {
-    background-color: white;
-    color: $primaryBlack;
-    width: 900px;
-    max-height: 70vh;
-    padding-bottom: 20px;
+    display: flex;
 
+    .modal-window-container {
+        background-color: white;
+        color: $primaryBlack;
+    }
+    h3 {
+        margin-top: 0;
+    }
     input {display: none;}
-    h2 {
-        padding: 50px;
+    #transition-modal-title {
+        padding: 40px;
         color: white;
         text-align: center;
         margin: 0;
@@ -22,11 +24,27 @@ div[role="presentation"] {
         background-color: $primaryColor;
     }
     .content {
-        margin-top: 2%;
-        padding: 0 50px 20px 50px;
+        padding: 30px 50px 30px 50px;
+        overflow: auto;
+        max-height: 60vh;
     }
-    &.lesson {
-        width: 50vw;
+    &.cantApply .modal-window-container {
+        max-width: 80vw;
+        .content {
+            padding-bottom: 0;
+        }
+        .lessons-needed {
+            background-color: whitesmoke;
+            padding: 40px;
+        }
+        .bottom-buttons {
+            padding-bottom: 20px;
+        }
+    }
+    &.lesson, &.default, &.exam, &.quizzExam {
+       .modal-window-container {
+           width: 600px;
+       }
     }
     &.test {
         .answers {
@@ -74,7 +92,7 @@ div[role="presentation"] {
     .bottom-buttons {
         display: flex;
         justify-content: space-evenly;
-        
+        margin-top: 20px;
         button {
             width: 200px;
         }

@@ -33,9 +33,13 @@ $section-margin: 5%;
         justify-content: space-between;
         flex-wrap: wrap;
 
+        
         .task-card {
             width: 30%;
             margin-top: 20px;
+            &:nth-of-type(1), &:nth-of-type(3) {
+                pointer-events: none;
+            }
         }
     }
     .welcome {
@@ -55,17 +59,10 @@ $section-margin: 5%;
         display: inline-flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
-        .lesson-card {
-            width: 49%;
-        }
     }
 }
 
 @include media-query(medium-screen) { 
-    .lesson-card {
-        width: 100% !important;
-    }
     .dashboard {
         .recents, .courses {
             width: 100%;

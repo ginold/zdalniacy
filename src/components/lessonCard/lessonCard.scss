@@ -2,7 +2,11 @@
 
 .lesson-card {
     width: 100%;
-    margin-bottom: 20px;
+    display: flex;
+
+    &:not(:last-of-type) {
+        margin-bottom: 20px;
+    }
     
     .lesson-card-container {
         font-size: 1.1em;
@@ -22,9 +26,20 @@
     .lesson-description {
         overflow: hidden;
         display: -webkit-box;
+        font-size: .8em;
         -webkit-box-orient: vertical;
         /* Limit the text block to three lines */
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
+    }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 0 15px;
+        width: 200px;
+    }
+    .unlock-button svg {
+        margin-right: 15px;
     }
     .free {
         font-weight: bold;
@@ -34,22 +49,35 @@
     .properties {
         display: flex;
         margin-top: 20px;
-
+        
         .property {
+            font-size: 1em;
             margin-right: 20px;
             display: flex;
             align-items: flex-end;
 
             &.can-unlock, &.can-unlock svg {
-                color: $secondaryGreen;
+                fill: $secondaryGreen;
             }
             p {
                 margin: 0;
             }
             svg {
                 margin-right: 5px;
-                color: $primaryBlack;
             }
         }
     }
+}
+.trophy-icon.MuiSvgIcon-root {
+    fill: darkgoldenrod;
+    transform: scale(.9);
+}
+.cost-icon.MuiSvgIcon-root {
+    fill: burlywood;
+}
+.time-icon.MuiSvgIcon-root {
+    fill: lightsteelblue;
+}
+.check-icon.MuiSvgIcon-root {
+    fill: forestgreen;
 }

@@ -1,0 +1,22 @@
+
+[id^="saved"], [id^="applied"] {
+    p.info {
+        font-size: 1.4em;
+    }
+    
+}
+[id^="saved"], [id^="applied"] {
+    h1  {
+        padding: 30px 20px 0 20px;
+    }
+    p.info {
+        padding-left: 20px;
+    }
+    [class*="list"]  {
+        padding: 50px;
+        background-color: whitesmoke;
+    }
+    .job-offer-card, .lesson-card {
+        margin-bottom: 10px;
+    }
+}

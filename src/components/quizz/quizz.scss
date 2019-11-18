@@ -1,35 +1,56 @@
 @import '../../variables.scss';
 
-#test {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+#quizz {
+    width: 65vw;
 
-    .test-container, .progress {
-        width: 65vw;
+    .progress-info {
+        margin-top: 20px;
+        text-align: center;
     }
     .progress {
         height: 20px;
         border-radius: 10px;
+        position: absolute;
+        width: 56vh;
+        right: -100px;
+        transform: rotate(90deg);
+        top: calc(#{$navigation-height  } + 20vh);
+    }
+    .MuiLinearProgress-bar {
+        background-color: $secondaryGreen;
+    }
+    .MuiLinearProgress-root {
+        background-color: rgb(231, 229, 229);
+    }
+    .lesson-title{
+        text-align: center;
     }
     .test-container {
         margin-top: 50px;
         
         .buttons {
-            position: relative;
-            margin-top: 30px;
-            .prev-step  span {
-                color: white;
+            position: absolute;
+            width: 65vw;
+            bottom: 70px;
+            height: 40px;
+
+            .prev-step,.exit { 
+                span {
+                    color: white;
+                }
             }
             .next-step {
                 position: absolute;
                 right: 100px;
             }
+            .exit {
+                margin-right: 20px;
+            }
         }
     }
     .question {
         .question-title {
+            text-align: center;
             margin-top: 0;
             font-size: 2.2em;
             color: $primaryColor;

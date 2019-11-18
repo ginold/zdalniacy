@@ -6,9 +6,8 @@ import { Link, useLocation } from 'react-router-dom';
 function LoginButton(props) {
   const location = useLocation()
   const from = props.from || location.pathname;
-
   const p = props
-  console.log(location, from)
+
   return (<Link
     to={{
       pathname: "/login",

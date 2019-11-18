@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import './modal.scss';
 import ModalContentTest from '../components/modalContentTest'
 import ModalContentApply from '../components/modalContentApply'
 import ModalContentUnlockLesson from '../components/modalContentUnlockLesson'
+import ModalContentDefault from '../components/modalContentDefault'
+import ModalContentEndQuizzExam from '../components/modalContentEndQuizzExam';
+import ModalContentHomeworkExam from '../components/modalContentHomeworkExam/modalContentHomeworkExam';
+import ModalContentCantApplyYet from '../components/modalContentCantApplyYet';
 
 export default function ModalWindow(props) {
 
@@ -21,11 +24,6 @@ export default function ModalWindow(props) {
     props.isClosed()
   };
 
-  const createApplicationObject = (application, job) => {
-    let a = { user: {}, job, ...application }
-    props.sendApplication(a)
-  }
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -36,28 +34,50 @@ export default function ModalWindow(props) {
       BackdropComponent={Backdrop}
       BackdropProps={{ timeout: 500 }}
     >
+      <>
+        {type === 'apply' && <ModalContentApply
+          type={type}
+          sendApplication={props.sendApplication}
+          handleClose={handleClose}
+          job={props.object} />}
 
-      <Fade in={open}>
-        <div>
-          {type === 'apply' && <ModalContentApply
-            type={type}
-            createApplicationObject={createApplicationObject}
-            handleClose={handleClose}
-            job={props.object} />}
+        {type === 'cantApply' && <ModalContentCantApplyYet
+          handleClose={handleClose}
+          type={type}
+          lessonsNeeded={props.lessonsNeeded}
+        />}
 
-          {type === 'test' && <ModalContentTest
-            type={type}
-            answers={props.object}
-            handleClose={handleClose} />}
+        {type === 'test' && <ModalContentTest
+          type={type}
+          finish={props.finish}
+          handleClose={handleClose} />}
 
-          {type === 'lesson' && <ModalContentUnlockLesson
-            type={type}
-            unlock={props.unlock}
-            lesson={props.object}
-            handleClose={handleClose}
-          />}
-        </div>
-      </Fade>
+        {type === 'lesson' && <ModalContentUnlockLesson
+          type={type}
+          unlock={props.unlock}
+          lesson={props.object}
+          handleClose={handleClose}
+        />}
+        {type === 'quizzExam' && <ModalContentEndQuizzExam
+          type={type}
+          finish={props.finish}
+          checkAreCorrectAnswers={props.checkAreCorrectAnswers}
+          handleClose={handleClose}
+        />}
+
+        {type === 'homeworkExam' && <ModalContentHomeworkExam
+          type={type}
+          finish={props.finish}
+          handleClose={handleClose}
+        />}
+
+        {type === 'default' && <ModalContentDefault
+          type={type}
+          open={open}
+          modalContent={props.modalContent}
+          handleClose={handleClose}
+        />}
+      </>
     </Modal>
   );
 }

@@ -3,15 +3,17 @@
 .primary-button {
     background-color: $primaryColor !important;
     color: white !important;
+    font-size: 1em !important;
     &.green {
         background-color: $secondaryGreen !important;
     }
 }
-.outlined-button {
-    border: 3px solid $primaryColor !important;
+.outlined-button.MuiButton-outlined {
+    border: 3px solid $primaryColor;
     color: $primaryBlack !important;
+    font-size: 1em !important;
 
     &.green {
-        border-color: $secondaryGreen !important;
+        border: 3px solid $secondaryGreen;
     }
 }

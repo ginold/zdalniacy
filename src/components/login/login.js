@@ -9,10 +9,13 @@ import unlockedLessonsService from "../../services/unlockedLessonsService";
 import useForm from '../../helpers/useForm'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Spinner from "../spinner";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 function Login(props) {
   const [loginError, setLoginError] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
+  const [rememberMe, setRememberMe] = React.useState(false)
 
   const handleLogin = () => {
     setLoading(true)
@@ -20,13 +23,15 @@ function Login(props) {
       if (res.status === 200) {
         Auth.signIn()
         const data = await unlockedLessonsService.getUnlockedLessonsByUserId(res.data._id)
-        Auth.setUserData({ ...res.data, unlockedLessons: data.lessons, points: 1000 })
+        Auth.setUserData({ ...res.data, unlockedLessons: data.lessons })
+        if (rememberMe) Auth.rememberMe()
         redirect()
       }
     }).catch(err => {
       console.log(err)
       setLoginError(true)
-    }).finally(() => setLoading(false))
+      setLoading(false)
+    })
   }
   const redirect = () => {
     if (props.location.state) {
@@ -35,13 +40,10 @@ function Login(props) {
       goTo('/')
     }
   }
-  const requiredFieldText = "To pole jest wymagane."
-  const invalidEmail = 'E-mail jest nieprawidłowy.'
-
   const initialValues = {
     email: '', password: ''
   }
-  const { values, handleChange, handleSubmit } = useForm(initialValues, handleLogin);
+  const { values, handleChange, handleSubmit, invalidEmail, requiredFieldText } = useForm(initialValues, handleLogin);
   const goTo = (path) => {
     props.history.push(path);
   }
@@ -51,7 +53,7 @@ function Login(props) {
       <section className="signup-signin-container">
         <div className="signup-signin-header">
           <img alt="white logo" src={logo}></img>
-          <h1>Zaloguj się</h1>
+          <h1 className="title">Zaloguj się</h1>
         </div>
         <div className="form-container">
           <ValidatorForm onSubmit={handleSubmit}>
@@ -84,6 +86,19 @@ function Login(props) {
               validators={['required']}
               errorMessages={[requiredFieldText]}
             />
+            <FormControlLabel
+              className="remember-me"
+              control={
+                <Checkbox
+                  checked={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
+                  value="checkedB"
+                  inputProps={{
+                    'aria-label': 'secondary checkbox',
+                  }} />
+              }
+              label="Zapamiętaj mnie" />
+
             {loginError && <p>Błąd przy logowaniu.</p>}
             <PrimaryButton text="Login" primary onClick={handleSubmit} />
             <div className="other-login-options">

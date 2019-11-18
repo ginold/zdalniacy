@@ -1,0 +1,8 @@
+@import '../../variables.scss';
+
+.save-button {
+    svg {
+        color: $secondaryGreen;
+        margin-right: $card-margin-bottom;
+    }
+}   

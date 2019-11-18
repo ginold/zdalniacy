@@ -1,9 +1,11 @@
 const router = require('express').Router()
-let Course = require('../models/course.model').model;
+let Course = require('../models/course.model');
+let Lesson = require('../models/lesson.model');
 
 // route: /courses/
 router.route('/').get((req, res) => {
     Course.find()
+        .populate({ path: 'lessons', model: Lesson })
         .then(courses => res.json(courses))
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -11,6 +13,7 @@ router.route('/').get((req, res) => {
 // route: /courses/218937
 router.route('/:id').get((req, res) => {
     Course.findById(req.params.id)
+        .populate({ path: 'lessons', model: Lesson })
         .then(course => res.json(course))
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -19,6 +22,7 @@ router.route('/:id').get((req, res) => {
 // route: /courses/218937
 router.route('/type/:type').get((req, res) => {
     Course.findOne({ type: req.params.type })
+        .populate({ path: 'lessons', model: Lesson })
         .then(course => res.json(course))
         .catch(err => res.status(400).json('error: ' + err))
 })
@@ -30,10 +34,8 @@ router.route('/:id').delete((req, res) => {
 })
 // update
 router.route('/update/:id').post(async (req, res) => {
-    let oldCourse = await Course.findById(req.params.id)
-    let newCourse = { ...oldCourse._doc, ...req.body }
 
-    Course.findOneAndUpdate({ _id: req.params.id }, newCourse)
+    Course.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
         .then(result => {
             res.status(200).json('course updated! ' + result)
         })
