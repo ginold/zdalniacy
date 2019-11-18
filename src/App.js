@@ -110,3 +110,10 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(App);
+
+
+    // "serve": "concurrently \"react-scripts start\" \"nodemon ./backend/server.js\"",
+    // "start": "react-scripts start",
+    // "build": "react-scripts build",
+    // "test": "react-scripts test",
+    // "eject": "react-scripts eject"
