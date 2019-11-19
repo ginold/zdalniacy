@@ -11,6 +11,8 @@
 # production
 /build
 /lambda
+/functions
+/netlify-functions
 
 # misc
 .DS_Store

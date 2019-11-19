@@ -19,6 +19,14 @@ app.use('/users', require('./routes/users'));
 app.use('/courses', require('./routes/courses'));
 app.use('/unlockedlessons', require('./routes/unlockedLessons'));
 
+const proxy = require('http-proxy-middleware')
+
+app.use(proxy('/.netlify/functions/', {
+    target: 'http://localhost:9000/', // default lambda port
+    "pathRewrite": {
+        "^/\\.netlify/functions": ""
+    }
+}))
 
 process.on('unhandledRejection', error => {
     console.log('unhandledRejection', error.message);

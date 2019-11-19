@@ -1,6 +1,9 @@
 import axios from 'axios'
+console.log(process.env)
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/'
+    //  baseURL: 'http://localhost:5000'
+
+    baseURL: 'http://localhost:9000/.netlify/functions/server'
 })
 const isHandlerEnabled = (config = {}) => {
     return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ?
