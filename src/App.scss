@@ -76,9 +76,11 @@ h1 {
 
 /* The default outline styling, for greatest accessibility. */
 /* You can skip this to just use the browser's defaults. */
-:focus {
-  outline: none;
-  border: dashed 3px orange ;
+body:not(.using-mouse){
+  :focus {
+    outline: none;
+    border: dashed 3px orange ;
+  }
 }
 /* When mouse is detected, ALL focused elements have outline removed. */
 /* You could apply this selector only to buttons, if you wanted. */
