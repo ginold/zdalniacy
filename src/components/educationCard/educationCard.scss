@@ -45,4 +45,27 @@
             top: 7vw;
         }
     }
+
+    @include media-query(phone) {
+        width: 43vw;
+        height: 43vw;
+
+        &:hover {
+            .education-card-info {
+                transform: translateY(-43vw);
+            }
+            .text {
+                top: 17vw;
+            }
+         }
+
+        .education-card-info {
+            width: 43vw;
+            height: 43vw;
+            transform: translateY(-8vw);
+            .text {
+            font-size: 3.4vw;
+            }
+        }
+    }
 }

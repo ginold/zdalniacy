@@ -6,6 +6,11 @@ main {
     background-color: $primaryBlack;
     color: white;
     overflow: auto;
+
+    
+    @include media-query(phone) {
+        margin-left: 0;
+    }
 }
 
 // url  = '/' landing or dashboard

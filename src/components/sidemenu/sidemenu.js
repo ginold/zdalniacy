@@ -45,9 +45,9 @@ const tasksLinks = [
   ["Ukończone", <PlaylistAddCheckIcon />, "completed"]
 ]
 const dashboardLinks = [
-  ["Zadania na dziś", <AssignmentIcon />, "w"],
-  ["Punkty", <MoneyIcon />, "s"],
-  ["Aktualności", <LibraryBooksIcon />, "x"],
+  ["Zadania na dziś", <AssignmentIcon />, "nope"],
+  ["Punkty", <MoneyIcon />, "nope"],
+  ["Aktualności", <LibraryBooksIcon />, "nope"],
 ]
 const links = { dashboardLinks, workLinks, educationLinks, tasksLinks, socialLinks }
 

@@ -68,6 +68,10 @@ const App = ({ history, pathname, isLogged }) => {
           <Route exact path="/dashboard">
             {!isLogged ? <Redirect to="/login" /> : <Dashboard />}
           </Route>
+          <Route exact path="/dashboard/nope">
+            <Redirect to="/dashboard" />
+          </Route>
+
           <Route path="/entry_test" exact component={EntryTest} />
           <Route path="/work/jobOffers" component={Work} />
           <Route path="/work/recommended" component={props => <Work {...props} />} />

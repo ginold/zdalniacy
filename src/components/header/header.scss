@@ -9,6 +9,7 @@ header {
     height: $navigation-height;
     top: 0;
     z-index: 20;
+    overflow: auto;
 
     .logo {
         float: left;

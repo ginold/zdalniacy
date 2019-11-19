@@ -47,4 +47,9 @@
     .sort-filter-button svg {
         color: white;
     }
+
+    
+    @include media-query(phone) {
+        display: none;
+    }
 }

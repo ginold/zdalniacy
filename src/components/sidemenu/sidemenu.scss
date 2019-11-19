@@ -51,4 +51,8 @@ aside {
             color: white;
         }
     }
+    
+    @include media-query(phone) {
+        display: none;
+    }
 }

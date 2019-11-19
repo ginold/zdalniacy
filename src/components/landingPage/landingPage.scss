@@ -81,4 +81,17 @@
             }
         }
     }
+    
+@include media-query(phone) {
+        .work-text, .search-job, .what-to-see, .feature, .features-heading {
+            width:  100% !important;
+        }
+        .job-offers, .features {
+            flex-direction: column;
+        }
+        .job-offers {
+            height: auto;
+        }
+    }
 }
+

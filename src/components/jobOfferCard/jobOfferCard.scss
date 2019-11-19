@@ -44,4 +44,13 @@
             margin-left: 0;
         }
     }
+    
+    @include media-query(phone) {
+        flex-direction: column;
+
+        .card-actions {
+            width: 100%;
+            padding:0 ;
+        }
+    }
 }

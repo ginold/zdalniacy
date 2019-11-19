@@ -56,7 +56,7 @@ $section-margin: 5%;
         color: $primaryColor;
     }
     .lesson-cards-div {
-        display: inline-flex;
+        display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }

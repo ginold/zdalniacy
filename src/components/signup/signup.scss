@@ -90,6 +90,21 @@
             }
         }
     }
+    @include media-query(phone) {
+        width: 100vw;
+        .info {
+            display: none;
+        }
+        .steps-container {
+            width: 300vw;
+        }
+        .signup-signin-container {
+            width: 100vw;
+        }
+        .step {
+            width: calc(100vw - 80px)
+        }
+    }
 }
 
 .step {
