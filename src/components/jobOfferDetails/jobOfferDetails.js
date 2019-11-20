@@ -97,10 +97,10 @@ class JobOfferDetails extends Component {
             </div>
             <JobProperties job={job} />
             <div className="content">
-              <p>{job.description}</p>
+              <p className="job-description-text">{job.description}</p>
               {job.requirements && <>
                 <h2>Wymagania</h2>
-                <p>{job.requirements}</p>
+                <p className="job-requirements">{job.requirements}</p>
               </>}
             </div>
           </div>

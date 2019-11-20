@@ -16,7 +16,8 @@
     .job-description {
         overflow: hidden;
         display: -webkit-box;
-        font-size: 1em;
+        font-size: 1.3em;
+        line-height: $p-line-height;
         -webkit-box-orient: vertical;
         /* Limit the text block to three lines */
         -webkit-line-clamp: 3;
@@ -36,8 +37,8 @@
     .card-actions {
         justify-content: center;
         padding: 15px 2.5%;
-        width: 25%;
         flex-wrap: wrap;
+        max-width: 145px;
 
         button {
             width: 100%;

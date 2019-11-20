@@ -30,6 +30,9 @@
         grid-area: description;
         padding-right: 40px;
     }
+    .job-description-text, .job-requirements{
+        line-height: $p-line-height;
+    }
     .job-offer-above-header{
         margin: 0;
         font-size: 1.3em;

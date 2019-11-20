@@ -26,7 +26,8 @@
     .lesson-description {
         overflow: hidden;
         display: -webkit-box;
-        font-size: .8em;
+        font-size: .9em;
+        line-height: $p-line-height;
         -webkit-box-orient: vertical;
         /* Limit the text block to three lines */
         -webkit-line-clamp: 3;

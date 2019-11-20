@@ -17,6 +17,8 @@ $break-small: 500px;
 $break-medium: 1300px;
 $break-large: 1600px;
 
+$p-line-height: 1.7em;
+
 @mixin media-query($media) {
   @if $media == phone {
     @media only screen and (max-width: $break-small) { @content; }
