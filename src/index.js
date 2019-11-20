@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
+import SkipLink from './components/skipLink';
+
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
@@ -12,6 +14,7 @@ export const myStore = configureStore()
 
 ReactDOM.render(
     <Provider store={myStore}>
+        <SkipLink />
         <App history={history} />
     </Provider>,
     document.getElementById('root'));

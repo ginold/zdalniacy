@@ -1,0 +1,20 @@
+#skip-link {
+    position: fixed;
+    left: -300px;
+    padding: 20px;
+    background-color: indigo;
+    z-index: 200;
+    top: 20px;
+    transition: left .2s ;
+
+    a {
+        color: white;
+        padding: 10px;
+        font-size: 1.2em;
+        text-decoration: underline;
+    }
+
+    &:focus, &:active, &:focus-within {
+        left: 20px;
+    }
+}
