@@ -9,6 +9,7 @@ import ModalContentDefault from '../components/modalContentDefault'
 import ModalContentEndQuizzExam from '../components/modalContentEndQuizzExam';
 import ModalContentHomeworkExam from '../components/modalContentHomeworkExam/modalContentHomeworkExam';
 import ModalContentCantApplyYet from '../components/modalContentCantApplyYet';
+import DialogContent from '@material-ui/core/DialogContent';
 
 export default function ModalWindow(props) {
 
@@ -34,7 +35,7 @@ export default function ModalWindow(props) {
       BackdropComponent={Backdrop}
       BackdropProps={{ timeout: 500 }}
     >
-      <>
+      <DialogContent>
         {type === 'apply' && <ModalContentApply
           type={type}
           sendApplication={props.sendApplication}
@@ -77,7 +78,7 @@ export default function ModalWindow(props) {
           modalContent={props.modalContent}
           handleClose={handleClose}
         />}
-      </>
+      </DialogContent>
     </Modal>
   );
 }
