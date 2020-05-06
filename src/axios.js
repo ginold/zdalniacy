@@ -2,7 +2,7 @@ import axios from 'axios'
 console.log(process.env)
 const axiosInstance = axios.create({
     //  baseURL: 'http://localhost:5000'
-    baseURL: 'https://zdalniacy.netlify.com/.netlify/functions/server'
+    baseURL: 'https://zdalniacy.netlify.app/.netlify/functions/server'
 })
 const isHandlerEnabled = (config = {}) => {
     return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ?
