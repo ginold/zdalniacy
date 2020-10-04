@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import './modal.scss';
-import ModalContentTest from '../components/modalContentTest'
-import ModalContentApply from '../components/modalContentApply'
-import ModalContentUnlockLesson from '../components/modalContentUnlockLesson'
-import ModalContentDefault from '../components/modalContentDefault'
-import ModalContentEndQuizzExam from '../components/modalContentEndQuizzExam';
-import ModalContentHomeworkExam from '../components/modalContentHomeworkExam/modalContentHomeworkExam';
-import ModalContentCantApplyYet from '../components/modalContentCantApplyYet';
+import ModalContentTest from '../modalContentTest'
+import ModalContentApply from '../modalContentApply'
+import ModalContentUnlockLesson from '../modalContentUnlockLesson'
+import ModalContentDefault from '../modalContentDefault'
+import ModalContentEndQuizzExam from '../modalContentEndQuizzExam';
+import ModalContentHomeworkExam from '../modalContentHomeworkExam/modalContentHomeworkExam';
+import ModalContentCantApplyYet from '../modalContentCantApplyYet';
 import DialogContent from '@material-ui/core/DialogContent';
 
 export default function ModalWindow(props) {

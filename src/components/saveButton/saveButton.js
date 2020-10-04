@@ -5,7 +5,7 @@ import PrimaryButton from '../primary-button';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import './saveButton.scss';
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 
 class SaveButton extends Component {
   constructor(props) {
