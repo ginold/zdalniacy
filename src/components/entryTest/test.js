@@ -4,7 +4,7 @@ import NotificationsService from '../../services/notificationsService'
 import Auth from '../../services/auth';
 import axios from '../../axios'
 import Quizz from '../quizz'
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 import examService from '../../services/examService';
 
 class EntryTest extends Component {

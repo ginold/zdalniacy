@@ -4,7 +4,7 @@ import './homework.scss'
 import Paper from '@material-ui/core/Paper';
 import PrimaryButton from '../primary-button';
 import { Link } from 'react-router-dom';
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 
 class Homework extends Component {
   constructor(props) {

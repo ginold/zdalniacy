@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './jobOfferDetails.scss';
 import PrimaryButton from '../primary-button/primary-button';
 import JobOfferCard from '../jobOfferCard';
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 import jobService from '../../services/jobService'
 import SaveButton from '../saveButton/saveButton';
 import Auth from '../../services/auth';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import PrimaryButton from '../primary-button';
 import Checkbox from '@material-ui/core/Checkbox';

@@ -7,7 +7,7 @@ import './lessonCard.scss';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
-import ModalWindow from '../../modal';
+import ModalWindow from '../modal';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Auth from '../../services/auth';
 import { withRouter } from 'react-router-dom'
